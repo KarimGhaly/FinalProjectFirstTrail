@@ -54,9 +54,10 @@
                     android:id="@+id/etEmail"
                     android:layout_width="256dp"
                     android:layout_height="55dp"
-                    android:inputType="textEmailAddress"
                     android:hint="Email"
-                    android:maxLines="1" />
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:text="karimghaly.mac@gmail.com" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
@@ -109,8 +110,8 @@
                 android:layout_marginRight="8dp"
                 android:layout_marginTop="40dp"
                 android:autoLink="all"
-                android:text="Reset Password"
                 android:onClick="ResetPassword"
+                android:text="Reset Password"
                 android:textAlignment="center"
                 android:textColor="@color/colorPrimaryDark"
                 android:textSize="14sp"
