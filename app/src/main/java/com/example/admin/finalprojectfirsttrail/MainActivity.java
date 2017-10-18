@@ -1,5 +1,6 @@
 package com.example.admin.finalprojectfirsttrail;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
@@ -72,21 +73,8 @@ public class MainActivity extends AppCompatActivity {
         if (user != null) {
             uid = user.getUid();
         }
-        if (savedInstanceState!=null){
-            tabOpen = savedInstanceState.getInt("tabOpen");
-        }
-
-
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        fragmentManager = getSupportFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
-        openTab(tabOpen);
     }
 
     @Override
@@ -102,6 +90,23 @@ public class MainActivity extends AppCompatActivity {
         super.onSaveInstanceState(outState);
         outState.putInt("tabOpen", tabOpen);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        openTab(tabOpen);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        Log.d(TAG, "onRestoreInstanceState: ");
+        if (savedInstanceState!=null){
+            tabOpen = savedInstanceState.getInt("tabOpen");
+        }
     }
 
     private void openTab(int tabid)
@@ -366,4 +371,12 @@ public class MainActivity extends AppCompatActivity {
             return true;
         }
     };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(tabOpen == 2) {
+            payFrag.onActivityResult(requestCode,resultCode,data);
+        }
+    }
 }

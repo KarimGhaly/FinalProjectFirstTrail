@@ -228,19 +228,17 @@ public class PayFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
       super.onActivityResult(requestCode, resultCode, data);
 
-        Log.d(TAG, "onActivityResult: ");
-        if(requestCode == GALLERY_INTENT && resultCode == RESULT_OK){
+        if(resultCode == RESULT_OK){
             Uri uri = data.getData();
             StorageReference mStorageRef = FirebaseStorage.getInstance().getReference("Photos");
             StorageReference filepath = mStorageRef.child("Expenses").child(uid).child(uri.getLastPathSegment());
-
             filepath.putFile(uri)
                     .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                             Toast.makeText(getContext(), "Upload Successful", Toast.LENGTH_LONG).show();
                             downloadUrl = taskSnapshot.getDownloadUrl();
-                            Log.d(TAG, "onSuccess: "+ downloadUrl);
+
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
@@ -251,5 +249,6 @@ public class PayFragment extends Fragment {
                         }
                     });
         }
+
     }
 }
