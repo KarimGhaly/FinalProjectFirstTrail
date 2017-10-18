@@ -9,7 +9,7 @@ import java.util.Date;
 public class AdvanceInfoClass {
     float amount;
     String descriction;
-    String Status;
+    String status;
     Date date;
 
     public AdvanceInfoClass() {
@@ -18,7 +18,7 @@ public class AdvanceInfoClass {
     public AdvanceInfoClass(float amount, String descriction, String status, Date date) {
         this.amount = amount;
         this.descriction = descriction;
-        Status = status;
+        this.status = status;
         this.date = date;
     }
 
@@ -39,11 +39,11 @@ public class AdvanceInfoClass {
     }
 
     public String getStatus() {
-        return Status;
+        return status;
     }
 
     public void setStatus(String status) {
-        Status = status;
+        this.status = status;
     }
 
     public Date getDate() {

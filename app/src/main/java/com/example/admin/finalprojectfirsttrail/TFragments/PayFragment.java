@@ -93,7 +93,6 @@ public class PayFragment extends Fragment {
         unbinder = ButterKnife.bind(this, view);
         financesViewpager.setAdapter(new PaySlipViewPagerAdapter(getContext(), payStubFragClass.getPaySlips()));
 
-
         return view;
     }
 
@@ -113,7 +112,7 @@ public class PayFragment extends Fragment {
                 advance.setDescriction(desc.getText().toString());
                 advance.setStatus("Pending");
                 advance.setDate(new Date());
-                ref.push().setValue(advance, new DatabaseReference.CompletionListener() {
+                ref.child("Advance").push().setValue(advance, new DatabaseReference.CompletionListener() {
                     @Override
                     public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
                         Toast.makeText(getContext(), "Advance Added Successfully", Toast.LENGTH_SHORT).show();
@@ -129,6 +128,7 @@ public class PayFragment extends Fragment {
                 RADialog.dismiss();
             }
         });
+        RADialog.show();
 
     }
 
@@ -145,6 +145,7 @@ public class PayFragment extends Fragment {
             case R.id.btnPayStubFrag_advancesRequested:
                 break;
             case R.id.btnPayStubFrag_requestAdvance:
+                RequestAdvance();
                 break;
             case R.id.btnPayStubFrag_expenseReport:
                 break;
