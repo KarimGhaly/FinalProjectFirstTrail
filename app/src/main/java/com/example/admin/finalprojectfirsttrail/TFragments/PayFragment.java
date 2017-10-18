@@ -226,7 +226,9 @@ public class PayFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+      super.onActivityResult(requestCode, resultCode, data);
+
+        Log.d(TAG, "onActivityResult: ");
         if(requestCode == GALLERY_INTENT && resultCode == RESULT_OK){
             Uri uri = data.getData();
             StorageReference mStorageRef = FirebaseStorage.getInstance().getReference("Photos");
