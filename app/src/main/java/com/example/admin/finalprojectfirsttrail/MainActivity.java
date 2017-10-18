@@ -75,21 +75,27 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState!=null){
             tabOpen = savedInstanceState.getInt("tabOpen");
         }
-        openTab(tabOpen);
-        
-        fragmentManager = getSupportFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
+
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+        openTab(tabOpen);
+    }
+
+    @Override
     protected void onSaveInstanceState(Bundle outState) {
+        Log.d(TAG, "onSaveInstanceState: ");
         List<Fragment> fragmentList = fragmentManager.getFragments();
         for(Fragment frag : fragmentList)
         {
-            if(frag!=null)
+            if(frag!=null )
             fragmentTransaction.remove(frag).commit();
         }
 
