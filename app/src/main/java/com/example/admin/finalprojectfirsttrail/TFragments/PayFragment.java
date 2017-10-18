@@ -7,6 +7,9 @@ import android.support.annotation.Nullable;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +22,7 @@ import android.widget.Toast;
 import com.example.admin.finalprojectfirsttrail.FragmentClass.PayStubFragClass;
 import com.example.admin.finalprojectfirsttrail.InfoClass.AdvanceInfoClass;
 import com.example.admin.finalprojectfirsttrail.R;
+import com.example.admin.finalprojectfirsttrail.RecyclerViewApadpters.AdvanceRecyclerAdapter;
 import com.example.admin.finalprojectfirsttrail.RecyclerViewApadpters.PaySlipViewPagerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -68,6 +72,7 @@ public class PayFragment extends Fragment {
     private String uid;
 
     List<AdvanceInfoClass> advancesList = new ArrayList<>();
+
     public PayFragment() {
         // Required empty public constructor
     }
@@ -150,7 +155,19 @@ public class PayFragment extends Fragment {
                 {
                     advancesList.add(D.getValue(AdvanceInfoClass.class));
                 }
-                ShowDialog();
+                LinearLayoutManager layoutManager;
+                RecyclerView recyclerView;
+                View mView = getActivity().getLayoutInflater().inflate(R.layout.alert_recycler_view, null);
+                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(getContext());
+                mBuilder.setTitle("Advances Requested");
+                recyclerView = (RecyclerView) mView.findViewById(R.id.rvBenefits);
+                AdvanceRecyclerAdapter advanceRecyclerAdapter = new AdvanceRecyclerAdapter(advancesList);
+                recyclerView.setAdapter(advanceRecyclerAdapter);
+                layoutManager = new LinearLayoutManager(getContext());
+                recyclerView.setLayoutManager(layoutManager);
+                mBuilder.setView(mView);
+                mBuilder.setCancelable(true);
+                mBuilder.show();
             }
 
             @Override
