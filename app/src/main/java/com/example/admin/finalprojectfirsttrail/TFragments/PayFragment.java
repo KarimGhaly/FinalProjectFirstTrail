@@ -22,11 +22,15 @@ import com.example.admin.finalprojectfirsttrail.R;
 import com.example.admin.finalprojectfirsttrail.RecyclerViewApadpters.PaySlipViewPagerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -63,7 +67,7 @@ public class PayFragment extends Fragment {
     DatabaseReference ref;
     private String uid;
 
-
+    List<AdvanceInfoClass> advancesList = new ArrayList<>();
     public PayFragment() {
         // Required empty public constructor
     }
@@ -132,6 +136,32 @@ public class PayFragment extends Fragment {
 
     }
 
+    public void getAdvancesRequest(){
+
+        ref.child("Advance").orderByKey().limitToLast(10).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                advancesList.clear();
+                for(DataSnapshot D : dataSnapshot.getChildren())
+                {
+                    advancesList.add(D.getValue(AdvanceInfoClass.class));
+                }
+                ShowDialog();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void ShowDialog() {
+
+
+    }
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -143,6 +173,7 @@ public class PayFragment extends Fragment {
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btnPayStubFrag_advancesRequested:
+                getAdvancesRequest();
                 break;
             case R.id.btnPayStubFrag_requestAdvance:
                 RequestAdvance();
