@@ -25,12 +25,6 @@
 
             </include>
 
-            <include
-                layout="@layout/expenses_advances_card"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-            </include>
 
             <include
                 layout="@layout/deductions_card"
