@@ -106,7 +106,7 @@
                         android:text="Federal "
                         android:textSize="@dimen/payStub_rowTitleTextSize" />
 
-
+<!--Zacks edit-->
                     <TextView
                         android:id="@+id/tvDeduction_federalTax"
                         android:layout_width="wrap_content"
