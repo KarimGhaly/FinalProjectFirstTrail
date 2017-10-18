@@ -17,7 +17,7 @@
             android:orientation="vertical"
             android:weightSum="100">
 
-
+            <!--TODO : change to constraint layout-->
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
