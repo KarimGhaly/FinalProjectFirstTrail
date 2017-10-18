@@ -11,7 +11,7 @@
     <string name="error_field_required">This field is required</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name="title_account">Account</string>
-    <string name="title_pay">Pay</string>
+    <string name="title_pay">Pay Stub</string>
     <string name="title_benefits">Benefits</string>
     <string name="title_training">Training</string>
     <string name="title_marketing">Marketing</string>
