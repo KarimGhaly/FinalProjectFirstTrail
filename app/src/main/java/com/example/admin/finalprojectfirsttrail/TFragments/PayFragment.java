@@ -100,11 +100,15 @@ public class PayFragment extends Fragment {
         return view;
     }
 
+    public void SubmitExpense(){
+
+    }
+
     public void RequestAdvance() {
         final Dialog RADialog = new Dialog(getContext());
         RADialog.setTitle("Request Advance");
         RADialog.setContentView(R.layout.alert_dialog_request_advance);
-        final EditText amout = RADialog.findViewById(R.id.tvRequestAdvance_amount);
+        final EditText amount = RADialog.findViewById(R.id.tvRequestAdvance_amount);
         final EditText desc = RADialog.findViewById(R.id.tvRequestAdvance_description);
         Button Submit = RADialog.findViewById(R.id.btnSubmitRequestAdvance);
         Button Cancle = RADialog.findViewById(R.id.btnCancelAlertDialog);
@@ -112,7 +116,7 @@ public class PayFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 AdvanceInfoClass advance = new AdvanceInfoClass();
-                advance.setAmount(Float.valueOf(amout.getText().toString()));
+                advance.setAmount(Float.valueOf(amount.getText().toString()));
                 advance.setDescriction(desc.getText().toString());
                 advance.setStatus("Pending");
                 advance.setDate(new Date());
@@ -179,8 +183,10 @@ public class PayFragment extends Fragment {
                 RequestAdvance();
                 break;
             case R.id.btnPayStubFrag_expenseReport:
+
                 break;
             case R.id.btnPayStubFrag_submitExpense:
+                SubmitExpense();
                 break;
         }
     }
