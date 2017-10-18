@@ -325,7 +325,7 @@
                     android:textSize="@dimen/payStub_displayTextSize" />
 
 
-                <!--Reimbursed Expenses-->
+                <!--Advances-->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/payStub_rowTextViewHeight"
