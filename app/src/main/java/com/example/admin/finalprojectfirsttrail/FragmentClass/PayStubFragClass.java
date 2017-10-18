@@ -19,6 +19,10 @@ public class PayStubFragClass {
         return paySlips;
     }
 
+    public void setPaySlips(List<PaySlipInfoClass> paySlips) {
+        this.paySlips = paySlips;
+    }
+
     public void addPaySlip(PaySlipInfoClass paySlipInfoClass){
         paySlips.add(paySlipInfoClass);
     }

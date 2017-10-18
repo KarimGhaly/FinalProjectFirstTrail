@@ -31,6 +31,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -292,11 +294,13 @@ public class MainActivity extends AppCompatActivity {
         ref.child(uid).child("Training Phase").child("Finance").child("Pay Slips").orderByKey().limitToLast(10).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                payStubFragClass.clear();
+               List<PaySlipInfoClass> paysList = new ArrayList<PaySlipInfoClass>();
                 for(DataSnapshot D : dataSnapshot.getChildren())
                 {
-                    payStubFragClass.addPaySlip(D.getValue(PaySlipInfoClass.class));
+                    paysList.add(D.getValue(PaySlipInfoClass.class));
                 }
+                Collections.reverse(paysList);
+                payStubFragClass.setPaySlips(paysList);
                 CreatePayFragment();
             }
 
