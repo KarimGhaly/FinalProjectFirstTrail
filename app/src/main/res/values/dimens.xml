@@ -1,0 +1,23 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="payStub_columnTitleTextSize">16sp</dimen>
+    <dimen name="payStub_displayTextSize">16sp</dimen>
+    <dimen name="payStub_rowTitleTextSize">16sp</dimen>
+    <dimen name="payStub_displayTextPadding">5dp</dimen>
+    <dimen name="payStub_rowTextViewHeight">40dp</dimen>
+    <dimen name="display_rectangle_minWidth">50dp</dimen>
+
+    <!--<dimen name="payStub_rowTitleTextViewWidth">wrap_content</dimen>-->
+    <!--<dimen name="payStub_rateTextViewWidth">wrap_content</dimen>-->
+    <!--<dimen name="payStub_hoursTextViewWidth">wrap_content</dimen>-->
+    <!--<dimen name="payStub_totalTextViewWidth">wrap_content</dimen>-->
+    <!--<dimen name="payStub_ytdTextViewWidth">wrap_content</dimen>-->
+
+    <!--<dimen name="payStub_deductionsTitleTextViewWidth">wrap_content</dimen>-->
+    <!--<dimen name="payStub_deductionsTotalTextViewWidth">wrap_content</dimen>-->
+    <!--<dimen name="payStub_deductionsYtdTextViewWidth">wrap_content</dimen>-->
+
+</resources>

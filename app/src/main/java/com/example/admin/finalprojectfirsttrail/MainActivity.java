@@ -1,0 +1,359 @@
+package com.example.admin.finalprojectfirsttrail;
+
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.MenuItem;
+
+import com.example.admin.finalprojectfirsttrail.FragmentClass.AccountFragClass;
+import com.example.admin.finalprojectfirsttrail.FragmentClass.PayStubFragClass;
+import com.example.admin.finalprojectfirsttrail.InfoClass.ConsultantInfoClass;
+import com.example.admin.finalprojectfirsttrail.InfoClass.ContactInfoClass;
+import com.example.admin.finalprojectfirsttrail.InfoClass.HousingInfoClass;
+import com.example.admin.finalprojectfirsttrail.InfoClass.PaySlipInfoClass;
+import com.example.admin.finalprojectfirsttrail.InfoClass.TeamBindingClass;
+import com.example.admin.finalprojectfirsttrail.InfoClass.TeamInfoClass;
+import com.example.admin.finalprojectfirsttrail.TFragments.AccountFragment;
+import com.example.admin.finalprojectfirsttrail.TFragments.BenefitsFragment;
+import com.example.admin.finalprojectfirsttrail.TFragments.MarketingFragment;
+import com.example.admin.finalprojectfirsttrail.TFragments.PayFragment;
+import com.example.admin.finalprojectfirsttrail.TFragments.TrainingFragment;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class MainActivity extends AppCompatActivity {
+    public static final String TAG = "MainActivityTAG";
+    private String uid;
+    private DatabaseReference ref;
+    private DatabaseReference InfoRef;
+    private FirebaseDatabase database;
+    FragmentTransaction fragmentTransaction;
+    FragmentManager fragmentManager;
+
+
+    AccountFragment accountFrag;
+    PayFragment payFrag;
+    BenefitsFragment benefitsFrag;
+    TrainingFragment trainingFrag;
+    MarketingFragment marketingFrag;
+    int tabOpen=1;
+
+
+    AccountFragClass accountFragClass;
+    PayStubFragClass payStubFragClass;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
+        database = FirebaseDatabase.getInstance();
+        ref = database.getReference("Consultants_Records");
+        InfoRef = database.getReference();
+
+        if (user != null) {
+            uid = user.getUid();
+        }
+        if (savedInstanceState!=null){
+            tabOpen = savedInstanceState.getInt("tabOpen");
+        }
+        openTab(tabOpen);
+        
+        fragmentManager = getSupportFragmentManager();
+        fragmentTransaction = fragmentManager.beginTransaction();
+
+        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        List<Fragment> fragmentList = fragmentManager.getFragments();
+        for(Fragment frag : fragmentList)
+        {
+            Log.d(TAG, "onSaveInstanceState: "+frag.toString());
+            fragmentTransaction.remove(frag).commit();
+        }
+
+        super.onSaveInstanceState(outState);
+        outState.putInt("tabOpen", tabOpen);
+
+    }
+
+    private void openTab(int tabid)
+    {
+        switch (tabid)
+        {
+            case 1: {
+                if (accountFragClass == null) {
+                    Log.d(TAG, "openTab: First Time");
+                    setAccountFlagInfo();
+                } else {
+                    Log.d(TAG, "openTab: Not First Time");
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content, accountFrag, "frag").commit();
+                }
+                break;
+            }
+            case 2:
+                if(payStubFragClass==null)
+                {
+                    Log.d(TAG, "openTab: First Time");
+                    getPaySlips();
+                }
+                else {
+                    Log.d(TAG, "openTab: Not First");
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content, payFrag, "frag").commit();
+                }
+                break;
+            case 3:
+                if(benefitsFrag==null) {
+                    Log.d(TAG, "openTab: First Time");
+                    CreateBenfitsFragment();
+                }
+                else {
+                    Log.d(TAG, "openTab: Not First");
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content, benefitsFrag, "frag").commit();
+                }
+                break;
+            case 4:
+                if(trainingFrag==null)
+                {
+                    Log.d(TAG, "openTab: First");
+                    CreateTrainingFragment();
+                }
+                else {
+                    Log.d(TAG, "openTab: Not First");
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content, trainingFrag, "frag").commit();
+                }
+                break;
+            case 5:
+                if(marketingFrag==null)
+                {
+                    Log.d(TAG, "openTab: First");
+                    CreateMarketFragment();
+                }
+                else
+                {
+                    Log.d(TAG, "openTab: Not First");
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content, marketingFrag, "frag").commit();
+                }
+                break;
+        }
+    }
+
+    private void setAccountFlagInfo() {
+        ref.child(uid).child("Training Phase").child("Account").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                accountFragClass = new AccountFragClass();
+                String Consultant_Ref = dataSnapshot.child("Consultant_Refrence").getValue(String.class);
+                getConsultantInfo(Consultant_Ref);
+                String Housing_Ref = dataSnapshot.child("Housing_Refrence").getValue(String.class);
+                getHousingInfo(Housing_Ref);
+                String Instuctor_Ref = dataSnapshot.child("Instructor_Refrence").getValue(String.class);
+                getContactInfo(Instuctor_Ref,"Insturcotr");
+                String TrainingManager_Ref = dataSnapshot.child("TrainingManager_Refrence").getValue(String.class);
+                getContactInfo(TrainingManager_Ref,"Training_Manager");
+                String MarketingManager_Ref = dataSnapshot.child("MarketingManager_Refrence").getValue(String.class);
+                getContactInfo(MarketingManager_Ref,"Marketing_Manager");
+                String Team_Refrence = dataSnapshot.child("Team_Refrence").getValue(String.class);
+                BuildTeamInfoClass(Team_Refrence);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                Log.d(TAG, "onCancelled: ");
+            }
+        });
+    }
+
+    private  void getConsultantInfo(String Consultant_Refrence){
+        InfoRef.child("Consultant_Information").child(Consultant_Refrence).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                accountFragClass.setConsultantInfoClass(dataSnapshot.getValue(ConsultantInfoClass.class));
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void getHousingInfo(String housing_ref) {
+        InfoRef.child("Housing_Information").child(housing_ref).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                accountFragClass.setHousingInfoClass(dataSnapshot.getValue(HousingInfoClass.class));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void getContactInfo(String Contact_Ref, final String Position) {
+        InfoRef.child("Managers_Info").child(Contact_Ref).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                switch (Position)
+                {
+                    case "Insturcotr":
+                        accountFragClass.setInstuctor_Contact(dataSnapshot.getValue(ContactInfoClass.class));
+                        break;
+                    case "Training_Manager":
+                        accountFragClass.setTrainingManager_Contact(dataSnapshot.getValue(ContactInfoClass.class));
+                        break;
+                    case "Marketing_Manager":
+                        accountFragClass.setMarketingManager_Contact(dataSnapshot.getValue(ContactInfoClass.class));
+                        break;
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void BuildTeamInfoClass(String Team_Refrence)
+    {
+        final String Team_Ref = Team_Refrence;
+        InfoRef.child("Teams_Info").child(Team_Ref).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                accountFragClass.teamInfoClass.setTeam_Name(dataSnapshot.getValue(String.class));
+                InfoRef.child("Data_Binding").child("Teams_Consult").orderByChild("teamRefrence").equalTo(Team_Ref).addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for(DataSnapshot D : dataSnapshot.getChildren())
+                        {
+                            InfoRef.child("Consultant_Information").child(D.getValue(TeamBindingClass.class).getConsultantRefrence()).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    ConsultantInfoClass conusltant = dataSnapshot.getValue(ConsultantInfoClass.class);
+                                    accountFragClass.teamInfoClass.addTeam_Members(conusltant.getFirstName() + "  " + conusltant.getLastName());
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+
+                                }
+                            });
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
+                Log.d(TAG, "onDataChange: ");
+                CreateAccountFragment();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+    private void CreateAccountFragment() {
+        Log.d(TAG, "CreateAccountFragment: ");
+        accountFrag = new AccountFragment(accountFragClass);
+        getSupportFragmentManager().beginTransaction().replace(R.id.content, accountFrag, "frag").commit();
+    }
+
+
+    private void getPaySlips(){
+        payStubFragClass = new PayStubFragClass();
+        ref.child(uid).child("Training Phase").child("Finance").child("Pay Slips").orderByKey().limitToLast(10).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                payStubFragClass.clear();
+                for(DataSnapshot D : dataSnapshot.getChildren())
+                {
+                    payStubFragClass.addPaySlip(D.getValue(PaySlipInfoClass.class));
+                }
+                CreatePayFragment();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+
+        });
+
+
+    }
+
+    private void CreatePayFragment(){
+        payFrag = new PayFragment(payStubFragClass);
+        getSupportFragmentManager().beginTransaction().replace(R.id.content,payFrag, "frag").commit();
+    }
+
+    private void CreateBenfitsFragment()
+    {
+        benefitsFrag = new BenefitsFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content, benefitsFrag, "frag").commit();
+    }
+    private void CreateTrainingFragment()
+    {
+        trainingFrag = new TrainingFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content, trainingFrag, "frag").commit();
+    }
+    private void CreateMarketFragment(){
+        marketingFrag = new MarketingFragment();
+        getSupportFragmentManager().beginTransaction().replace(R.id.content, marketingFrag, "frag").commit();
+
+    }
+
+
+    BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
+        @Override
+        public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            switch (item.getItemId()) {
+                case R.id.navigation_account:
+                     tabOpen = 1;
+                    break;
+                case R.id.navigation_pay:
+                    tabOpen = 2;
+                    break;
+                case R.id.navigation_benefits:
+                    tabOpen =3;
+                    break;
+                case R.id.navigation_training:
+                    tabOpen=4;
+                    break;
+                case R.id.navigation_marketing:
+                    tabOpen=5;
+                    break;
+            }
+            openTab(tabOpen);
+            return true;
+        }
+    };
+}
