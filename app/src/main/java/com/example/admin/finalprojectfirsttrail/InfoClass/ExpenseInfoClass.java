@@ -1,5 +1,10 @@
 package com.example.admin.finalprojectfirsttrail.InfoClass;
 
+import java.util.Date;
+
+import java.util.Date;
+
+
 /**
  * Created by Admin on 10/18/2017.
  */
@@ -9,14 +14,18 @@ public class ExpenseInfoClass {
     private float amount;
     private String description;
     private String photoUrl;
+    private Date date;
 
     public ExpenseInfoClass() {
     }
 
-    public ExpenseInfoClass(float amount, String description, String photoUrl) {
+
+    public ExpenseInfoClass(float amount, String description, String photoUrl, Date date) {
         this.amount = amount;
         this.description = description;
         this.photoUrl = photoUrl;
+        this.date = date;
+
     }
 
     public float getAmount() {
@@ -41,5 +50,14 @@ public class ExpenseInfoClass {
 
     public void setPhotoUrl(String photoUrl) {
         this.photoUrl = photoUrl;
+    }
+
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 }
