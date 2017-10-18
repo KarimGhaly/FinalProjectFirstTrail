@@ -1,0 +1,66 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="250dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingBottom="15dp"
+    android:paddingLeft="10dp"
+    android:paddingRight="10dp"
+    android:paddingTop="15dp">
+
+    <EditText
+        android:id="@+id/etSubmitExpense_amount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Amount"
+        android:inputType="numberDecimal" />
+
+    <EditText
+        android:id="@+id/etSubmitExpense_description"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Description"
+        android:inputType="textMultiLine"
+        android:lines="2" />
+
+    <Button
+        android:id="@+id/btnSubmitExpense_uploadReceipt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Upload Receipt" />
+
+    <TextView
+        android:id="@+id/tvSubmitExpense_photoUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoLink="web"
+        android:gravity="center"
+        android:linksClickable="true"
+        android:text="Photo Url"
+        android:textColor="@color/colorPrimary"
+        android:textSize="15sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:paddingTop="10dp">
+
+        <Button
+            android:id="@+id/btnSubmitExpense_submitExpense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.35"
+            android:onClick="submitExpense"
+            android:text="Submit" />
+
+        <Button
+            android:id="@+id/btnCancelAlertDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.35"
+            android:onClick="cancelAlertDialog"
+            android:text="Cancel" />
+
+    </LinearLayout>
+
+</LinearLayout>

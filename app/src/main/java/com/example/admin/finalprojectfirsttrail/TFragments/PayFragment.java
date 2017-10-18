@@ -22,15 +22,11 @@ import com.example.admin.finalprojectfirsttrail.R;
 import com.example.admin.finalprojectfirsttrail.RecyclerViewApadpters.PaySlipViewPagerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -67,7 +63,7 @@ public class PayFragment extends Fragment {
     DatabaseReference ref;
     private String uid;
 
-    List<AdvanceInfoClass> advancesList = new ArrayList<>();
+
     public PayFragment() {
         // Required empty public constructor
     }
@@ -104,15 +100,15 @@ public class PayFragment extends Fragment {
         final Dialog RADialog = new Dialog(getContext());
         RADialog.setTitle("Request Advance");
         RADialog.setContentView(R.layout.alert_dialog_request_advance);
-        final EditText amout = RADialog.findViewById(R.id.tvRequestAdvance_amount);
+        final EditText amount = RADialog.findViewById(R.id.tvRequestAdvance_amount);
         final EditText desc = RADialog.findViewById(R.id.tvRequestAdvance_description);
         Button Submit = RADialog.findViewById(R.id.btnSubmitRequestAdvance);
-        Button Cancle = RADialog.findViewById(R.id.btnCancelAlertDialog);
+        Button Cancel = RADialog.findViewById(R.id.btnCancelAlertDialog);
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AdvanceInfoClass advance = new AdvanceInfoClass();
-                advance.setAmount(Float.valueOf(amout.getText().toString()));
+                advance.setAmount(Float.valueOf(amount.getText().toString()));
                 advance.setDescriction(desc.getText().toString());
                 advance.setStatus("Pending");
                 advance.setDate(new Date());
@@ -126,7 +122,7 @@ public class PayFragment extends Fragment {
 
             }
         });
-        Cancle.setOnClickListener(new View.OnClickListener() {
+        Cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RADialog.dismiss();
@@ -160,6 +156,55 @@ public class PayFragment extends Fragment {
     private void ShowDialog() {
 
 
+    }
+
+    //////////////////////////////////////////////////////////////NEW
+    public void SubmitExpense() {
+        final Dialog SEDialog = new Dialog(getContext());
+        SEDialog.setTitle("Submit Expense");
+        SEDialog.setContentView(R.layout.alert_dialog_expense);
+
+        final EditText etAmount = SEDialog.findViewById(R.id.etSubmitExpense_amount);
+        final EditText etDescription = SEDialog.findViewById(R.id.etSubmitExpense_description);
+        final Button btnUploadReceipt = SEDialog.findViewById(R.id.btnSubmitExpense_uploadReceipt);
+        final TextView photoUrl = SEDialog.findViewById(R.id.tvSubmitExpense_photoUrl);
+        final Button btnSubmitExpense = SEDialog.findViewById(R.id.btnSubmitExpense_submitExpense);
+        final Button btnCancel = SEDialog.findViewById(R.id.btnCancelAlertDialog);
+        final boolean[] flag = {false};
+
+        btnUploadReceipt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                flag[0] = true;
+
+                Intent intent = new Intent(Intent.ACTION_PICK);
+                intent.setType("image/*");
+                startActivityForResult(intent, GALLERY_INTENT);
+            }
+        });
+        btnSubmitExpense.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
+            @Override
+            public void onClick(View v) {
+                if (!Objects.equals(etAmount.getText().toString(), "")
+                        && !Objects.equals(etDescription.getText().toString(), "")) {
+                    if (flag[0]) {
+                        ExpenseInfoClass expense = new ExpenseInfoClass();
+                        expense.setAmount(Float.valueOf(etAmount.getText().toString()));
+                        expense.setDescription(etDescription.getText().toString());
+                    } else {
+                        Toast.makeText(getContext(), "Insert Receipt", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        });
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SEDialog.dismiss();
+            }
+        });
+        SEDialog.show();
     }
 
     @Override
