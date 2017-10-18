@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
         List<Fragment> fragmentList = fragmentManager.getFragments();
         for(Fragment frag : fragmentList)
         {
-            Log.d(TAG, "onSaveInstanceState: "+frag.toString());
+            if(frag!=null)
             fragmentTransaction.remove(frag).commit();
         }
 
