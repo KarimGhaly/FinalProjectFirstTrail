@@ -2,6 +2,7 @@ package com.example.admin.finalprojectfirsttrail.RecyclerViewApadpters;
 
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +12,13 @@ import android.widget.TextView;
 import com.example.admin.finalprojectfirsttrail.InfoClass.PaySlipInfoClass;
 import com.example.admin.finalprojectfirsttrail.R;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.example.admin.finalprojectfirsttrail.MainActivity.TAG;
 
 /**
  * Created by Admin on 10/17/2017.
@@ -122,10 +126,12 @@ public class PaySlipViewPagerAdapter extends PagerAdapter {
         View view = LayoutInflater.from(context).inflate(R.layout.pager_list_item, container, false);
         ButterKnife.bind(this,view);
         ButterKnife.setDebug(true);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         PaySlipInfoClass payslib = payslips.get(position);
-        tvDatePayDate.setText(payslib.getPayDate().toString());
-        tvDateStartDate.setText(payslib.getFrom().toString());
-        tvDateEndDate.setText(payslib.getTo().toString());
+        Log.d(TAG, "instantiateItem: "+payslib.getPayDate().toString());
+        tvDatePayDate.setText(dateFormat.format(payslib.getPayDate()));
+        tvDateStartDate.setText(dateFormat.format(payslib.getFrom()));
+        tvDateEndDate.setText(dateFormat.format(payslib.getTo()));
         tvEarningRegularRate.setText(String.valueOf(payslib.getHourlyRate()));
         tvEarningRegularHours.setText(String.valueOf(payslib.getTotalHours()));
         tvEarningRegularPay.setText(String.valueOf(payslib.getHourlyRate() * payslib.getTotalHours()));
