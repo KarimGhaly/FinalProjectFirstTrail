@@ -2,6 +2,8 @@
 
 
 
+
+
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -55,7 +57,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
             android:layout_weight="1"
-            android:text="Request Advance" />
+            android:text="Request Advance"
+            android:onClick="RequestAdvance"/>
 
 
     </LinearLayout>
@@ -79,6 +82,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+
             android:text="Expense Report" />
 
         <Button
