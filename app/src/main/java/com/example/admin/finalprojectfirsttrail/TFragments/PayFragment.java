@@ -2,17 +2,14 @@ package com.example.admin.finalprojectfirsttrail.TFragments;
 
 
 import android.app.Dialog;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.support.constraint.ConstraintLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,37 +22,30 @@ import android.widget.Toast;
 import com.example.admin.finalprojectfirsttrail.FragmentClass.PayStubFragClass;
 import com.example.admin.finalprojectfirsttrail.InfoClass.AdvanceInfoClass;
 import com.example.admin.finalprojectfirsttrail.R;
+import com.example.admin.finalprojectfirsttrail.RecyclerViewApadpters.AdvanceRecyclerAdapter;
 import com.example.admin.finalprojectfirsttrail.RecyclerViewApadpters.PaySlipViewPagerAdapter;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.example.admin.finalprojectfirsttrail.InfoClass.*;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
+import com.google.firebase.database.ValueEventListener;
 
-import java.net.URI;
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.Objects;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-import static android.app.Activity.RESULT_OK;
-
 /**
  * A simple {@link Fragment} subclass.
  */
 public class PayFragment extends Fragment {
     public static final String TAG = "PayFragmentTAG";
-    private static final int GALLERY_INTENT = 12;
-
     PayStubFragClass payStubFragClass;
     @BindView(R.id.payStubTitle)
     TextView payStubTitle;
@@ -80,9 +70,8 @@ public class PayFragment extends Fragment {
     FirebaseDatabase database;
     DatabaseReference ref;
     private String uid;
-    private int gallery_intent;
-    private Uri downloadUrl;
 
+    List<AdvanceInfoClass> advancesList = new ArrayList<>();
 
     public PayFragment() {
         // Required empty public constructor
@@ -116,6 +105,10 @@ public class PayFragment extends Fragment {
         return view;
     }
 
+    public void SubmitExpense(){
+
+    }
+
     public void RequestAdvance() {
         final Dialog RADialog = new Dialog(getContext());
         RADialog.setTitle("Request Advance");
@@ -123,7 +116,7 @@ public class PayFragment extends Fragment {
         final EditText amount = RADialog.findViewById(R.id.tvRequestAdvance_amount);
         final EditText desc = RADialog.findViewById(R.id.tvRequestAdvance_description);
         Button Submit = RADialog.findViewById(R.id.btnSubmitRequestAdvance);
-        Button Cancel = RADialog.findViewById(R.id.btnCancelAlertDialog);
+        Button Cancle = RADialog.findViewById(R.id.btnCancelAlertDialog);
         Submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,7 +135,7 @@ public class PayFragment extends Fragment {
 
             }
         });
-        Cancel.setOnClickListener(new View.OnClickListener() {
+        Cancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 RADialog.dismiss();
@@ -152,54 +145,42 @@ public class PayFragment extends Fragment {
 
     }
 
+    public void getAdvancesRequest(){
 
-    public void SubmitExpense() {
-        final Dialog SEDialog = new Dialog(getContext());
-        SEDialog.setTitle("Submit Expense");
-        SEDialog.setContentView(R.layout.alert_dialog_expense);
-
-        final EditText etAmount = SEDialog.findViewById(R.id.etSubmitExpense_amount);
-        final EditText etDescription = SEDialog.findViewById(R.id.etSubmitExpense_description);
-        Button btnUploadReceipt = SEDialog.findViewById(R.id.btnSubmitExpense_uploadReceipt);
-        TextView photoUrl = SEDialog.findViewById(R.id.tvSubmitExpense_photoUrl);
-        Button btnSubmitExpense = SEDialog.findViewById(R.id.btnSubmitExpense_submitExpense);
-        Button btnCancel = SEDialog.findViewById(R.id.btnCancelAlertDialog);
-
-        btnUploadReceipt.setOnClickListener(new View.OnClickListener() {
+        ref.child("Advance").orderByKey().limitToLast(10).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(intent, GALLERY_INTENT);
-            }
-        });
-        btnSubmitExpense.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public void onClick(View v) {
-                if (!etAmount.getText().toString().isEmpty() && etDescription.getText().toString().isEmpty()) {
-                        ExpenseInfoClass expense = new ExpenseInfoClass();
-                        expense.setAmount(Float.valueOf(etAmount.getText().toString()));
-                        expense.setDescription(etDescription.getText().toString());
-                        expense.setDate(new Date());
-                        expense.setPhotoUrl(downloadUrl.toString());
-                    ref.child("Expenses").push().setValue(expense, new DatabaseReference.CompletionListener() {
-                        @Override
-                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                            Toast.makeText(getContext(), "Expenses Submitted Successfully", Toast.LENGTH_SHORT).show();
-                            SEDialog.dismiss();
-                        }
-                    });
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                advancesList.clear();
+                for(DataSnapshot D : dataSnapshot.getChildren())
+                {
+                    advancesList.add(D.getValue(AdvanceInfoClass.class));
                 }
+                LinearLayoutManager layoutManager;
+                RecyclerView recyclerView;
+                View mView = getActivity().getLayoutInflater().inflate(R.layout.alert_recycler_view, null);
+                final AlertDialog.Builder mBuilder = new AlertDialog.Builder(getContext());
+                mBuilder.setTitle("Advances Requested");
+                recyclerView = (RecyclerView) mView.findViewById(R.id.rvBenefits);
+                AdvanceRecyclerAdapter advanceRecyclerAdapter = new AdvanceRecyclerAdapter(advancesList);
+                recyclerView.setAdapter(advanceRecyclerAdapter);
+                layoutManager = new LinearLayoutManager(getContext());
+                recyclerView.setLayoutManager(layoutManager);
+                mBuilder.setView(mView);
+                mBuilder.setCancelable(true);
+                mBuilder.show();
             }
-        });
-        btnCancel.setOnClickListener(new View.OnClickListener() {
+
             @Override
-            public void onClick(View v) {
-                SEDialog.dismiss();
+            public void onCancelled(DatabaseError databaseError) {
+
             }
         });
-        SEDialog.show();
+
+    }
+
+    private void ShowDialog() {
+
+
     }
 
     @Override
@@ -208,47 +189,22 @@ public class PayFragment extends Fragment {
         unbinder.unbind();
     }
 
+
     @OnClick({R.id.btnPayStubFrag_advancesRequested, R.id.btnPayStubFrag_requestAdvance, R.id.btnPayStubFrag_expenseReport, R.id.btnPayStubFrag_submitExpense})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btnPayStubFrag_advancesRequested:
+                getAdvancesRequest();
                 break;
             case R.id.btnPayStubFrag_requestAdvance:
                 RequestAdvance();
                 break;
             case R.id.btnPayStubFrag_expenseReport:
-                SubmitExpense();
+
                 break;
             case R.id.btnPayStubFrag_submitExpense:
+                SubmitExpense();
                 break;
         }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-      super.onActivityResult(requestCode, resultCode, data);
-
-        if(resultCode == RESULT_OK){
-            Uri uri = data.getData();
-            StorageReference mStorageRef = FirebaseStorage.getInstance().getReference("Photos");
-            StorageReference filepath = mStorageRef.child("Expenses").child(uid).child(uri.getLastPathSegment());
-            filepath.putFile(uri)
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                            Toast.makeText(getContext(), "Upload Successful", Toast.LENGTH_LONG).show();
-                            downloadUrl = taskSnapshot.getDownloadUrl();
-
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(getContext(), "Upload Unsuccessful", Toast.LENGTH_LONG).show();
-                            Log.d(TAG, "onFailure: "+ e);
-                        }
-                    });
-        }
-
     }
 }
