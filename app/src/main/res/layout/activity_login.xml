@@ -74,6 +74,7 @@
 
                 <EditText
                     android:id="@+id/etPassword"
+                    android:text="Welcome2BB"
                     android:layout_width="257dp"
                     android:layout_height="50dp"
                     android:ems="10"
