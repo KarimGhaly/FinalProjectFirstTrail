@@ -15,17 +15,25 @@ public class ExpenseInfoClass {
     private String description;
     private String photoUrl;
     private Date date;
+    private String status;
 
     public ExpenseInfoClass() {
     }
 
-
-    public ExpenseInfoClass(float amount, String description, String photoUrl, Date date) {
+    public ExpenseInfoClass(float amount, String description, String photoUrl, Date date, String status) {
         this.amount = amount;
         this.description = description;
         this.photoUrl = photoUrl;
         this.date = date;
+        this.status = status;
+    }
 
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public float getAmount() {
