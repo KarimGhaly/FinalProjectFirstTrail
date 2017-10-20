@@ -27,9 +27,9 @@
                     android:id="@+id/tvDeduction_colDeductions"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginBottom="8dp"
                     android:text="DEDUCTIONS"
                     android:textSize="@dimen/payStub_columnTitleTextSize"
                     app:layout_constraintLeft_toLeftOf="@+id/guidelineA"
@@ -39,9 +39,9 @@
                     android:id="@+id/tvDeduction_colTotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
-                    android:layout_marginBottom="8dp"
                     android:layout_marginTop="16dp"
                     android:text="TOTAL"
                     android:textSize="@dimen/payStub_columnTitleTextSize"
@@ -53,8 +53,8 @@
                     android:id="@+id/tvDeduction_colYTD"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
                     android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
                     android:layout_marginRight="16dp"
                     android:layout_marginTop="16dp"
                     android:text="YTD"
@@ -624,21 +624,21 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.05" />
+                    app:layout_constraintGuide_percent="0" />
 
                 <android.support.constraint.Guideline
                     android:id="@+id/guidelineS"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.6" />
+                    app:layout_constraintGuide_percent="0.65" />
 
                 <android.support.constraint.Guideline
                     android:id="@+id/guidelineE"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.85" />
+                    app:layout_constraintGuide_percent="0.87" />
 
             </android.support.constraint.ConstraintLayout>
 
