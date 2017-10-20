@@ -15,11 +15,13 @@
         android:layout_weight="1">
     </FrameLayout>
 
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        app:itemTextColor="@color/colorAccentLight"
         android:background="?android:attr/windowBackground"
         app:menu="@menu/navigation" />
 
