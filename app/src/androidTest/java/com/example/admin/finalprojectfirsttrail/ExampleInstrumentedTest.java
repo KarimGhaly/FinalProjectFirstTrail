@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 
 import static org.junit.Assert.*;
 
+//TODO: Add an espresso unit test to run the login
 /**
  * Instrumentation test, which will execute on an Android device.
  *

@@ -1,701 +1,650 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.CardView
+
+    <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
-
-        android:padding="10dp"
-
-        >
+        android:padding="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:orientation="vertical"
-            android:weightSum="100">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <android.support.v7.widget.CardView
-
+            <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_height="wrap_content"><!--Federal Tax-->
 
-                android:padding="10dp"
-
-                >
-
-                <GridLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tvDeduction_colDeductions"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:columnCount="3"
-                    android:rowCount="1">
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="DEDUCTIONS"
+                    android:textSize="@dimen/payStub_columnTitleTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/guidelineA"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-
-                    <!--Column Titles-->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="0"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="top|start"
-                        android:layout_margin="5dp"
-                        android:layout_row="0"
-                        android:gravity="start|center_vertical"
-                        android:minWidth="50dp"
-                        android:text="DEDUCTIONS"
-                        android:textSize="@dimen/payStub_columnTitleTextSize" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="1"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="0"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:text="TOTAL"
-                        android:textSize="@dimen/payStub_columnTitleTextSize" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="2"
-                        android:layout_columnWeight="3"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="0"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:text="YTD"
-                        android:textSize="@dimen/payStub_columnTitleTextSize" />
-                </GridLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:padding="10dp">
-
-                <GridLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tvDeduction_colTotal"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:columnCount="3"
-                    android:rowCount="15">
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="16dp"
+                    android:text="TOTAL"
+                    android:textSize="@dimen/payStub_columnTitleTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/guidelineS"
+                    app:layout_constraintRight_toLeftOf="@+id/guidelineS"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-
-                    <!--Federal Tax-->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="0"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="top|start"
-                        android:layout_margin="5dp"
-                        android:layout_row="1"
-                        android:gravity="start|center_vertical"
-                        android:minWidth="50dp"
-                        android:text="Federal "
-                        android:textSize="@dimen/payStub_rowTitleTextSize" />
-
-<!--Zacks edit-->
-                    <TextView
-                        android:id="@+id/tvDeduction_federalTax"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="1"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="1"
-                        android:background="@drawable/display_rectangle"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/payStub_displayTextPadding"
-                        android:text="1522.00"
-                        android:textSize="@dimen/payStub_displayTextSize" />
-
-                    <TextView
-                        android:id="@+id/tvDeduction_federalTaxYTD"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="2"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="1"
-                        android:background="@drawable/display_rectangle"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/payStub_displayTextPadding"
-                        android:text="130,050.00"
-                        android:textSize="@dimen/payStub_displayTextSize" />
-
-                    <!--State Tax-->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="0"
-                        android:layout_gravity="top|start"
-                        android:layout_margin="5dp"
-
-                        android:layout_row="2"
-                        android:gravity="start|center_vertical"
-                        android:minWidth="50dp"
-                        android:text="State "
-                        android:textSize="@dimen/payStub_rowTitleTextSize" />
-
-
-                    <TextView
-                        android:id="@+id/tvDeduction_stateTax"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="1"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="2"
-                        android:background="@drawable/display_rectangle"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/payStub_displayTextPadding"
-                        android:text="1522.00"
-                        android:textSize="@dimen/payStub_displayTextSize" />
-
-                    <TextView
-                        android:id="@+id/tvDeduction_stateTaxYTD"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="2"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="2"
-                        android:background="@drawable/display_rectangle"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/payStub_displayTextPadding"
-                        android:text="130,050.00"
-                        android:textSize="@dimen/payStub_displayTextSize" />
-
-                    <!--Social Security-->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="0"
-                        android:layout_gravity="top|start"
-                        android:layout_margin="5dp"
-
-                        android:layout_row="3"
-                        android:gravity="start|center_vertical"
-                        android:minWidth="50dp"
-                        android:text="Social Security "
-                        android:textSize="@dimen/payStub_rowTitleTextSize" />
-
-
-                    <TextView
-                        android:id="@+id/tvDeduction_socialSecurityTax"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="1"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="3"
-                        android:background="@drawable/display_rectangle"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/payStub_displayTextPadding"
-                        android:text="1522.00"
-                        android:textSize="@dimen/payStub_displayTextSize" />
-
-                    <TextView
-                        android:id="@+id/tvDeduction_socialSecurityTaxYTD"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="2"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="3"
-                        android:background="@drawable/display_rectangle"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/payStub_displayTextPadding"
-                        android:text="130,050.00"
-                        android:textSize="@dimen/payStub_displayTextSize" />
-
-                    <!--Medicare-->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="0"
-                        android:layout_gravity="top|start"
-                        android:layout_margin="5dp"
-
-                        android:layout_row="4"
-                        android:gravity="start|center_vertical"
-                        android:minWidth="50dp"
-                        android:text="Medicare "
-                        android:textSize="@dimen/payStub_rowTitleTextSize" />
-
-                    <TextView
-                        android:id="@+id/tvDeduction_medicareTax"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="1"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="4"
-                        android:background="@drawable/display_rectangle"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/payStub_displayTextPadding"
-                        android:text="1522.00"
-                        android:textSize="@dimen/payStub_displayTextSize" />
-
-                    <TextView
-                        android:id="@+id/tvDeduction_medicareTaxYTD"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="2"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="4"
-                        android:background="@drawable/display_rectangle"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/payStub_displayTextPadding"
-                        android:text="130,050.00"
-                        android:textSize="@dimen/payStub_displayTextSize" />
-
-
-                </GridLayout>
-            </android.support.v7.widget.CardView>
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-
-                android:padding="10dp"
-
-                >
-
-                <GridLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tvDeduction_colYTD"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:columnCount="3"
-                    android:rowCount="6">
-                    <!--Medical Insurance-->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="0"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="top|start"
-                        android:layout_margin="5dp"
-                        android:layout_row="0"
-                        android:gravity="start|center_vertical"
-                        android:minWidth="50dp"
-                        android:text="Medical Ins. "
-                        android:textSize="@dimen/payStub_rowTitleTextSize" />
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginTop="16dp"
+                    android:text="YTD"
+                    android:textSize="@dimen/payStub_columnTitleTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/guidelineE"
+                    app:layout_constraintRight_toRightOf="@+id/guidelineE"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
-                    <TextView
-                        android:id="@+id/tvDeduction_medicareInsurance"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="1"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="0"
-                        android:background="@drawable/display_rectangle"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/payStub_displayTextPadding"
-                        android:text="1522.00"
-                        android:textSize="@dimen/payStub_displayTextSize" />
+                <TextView
+                    android:id="@+id/tvDeduction_federalTaxTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="start|center_vertical"
+                    android:text="Federal Tax"
+                    android:textSize="@dimen/payStub_rowTitleTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/guidelineA"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_colDeductions" />
 
-                    <TextView
-                        android:id="@+id/tvDeduction_medicareInsuranceYTD"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="2"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="0"
-                        android:background="@drawable/display_rectangle"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/payStub_displayTextPadding"
-                        android:text="130,050.00"
-                        android:textSize="@dimen/payStub_displayTextSize" />
+                <TextView
+                    android:id="@+id/tvDeduction_federalTax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/display_rectangle"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:padding="@dimen/payStub_displayTextPadding"
+                    android:text="0"
+                    android:textSize="@dimen/payStub_displayTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvDeduction_colTotal"
+                    app:layout_constraintRight_toRightOf="@+id/tvDeduction_colTotal"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_colDeductions" />
 
-                    <!--Vision Ins.-->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="0"
-                        android:layout_gravity="top|start"
-                        android:layout_margin="5dp"
+                <TextView
+                    android:id="@+id/tvDeduction_federalTaxYTD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/display_rectangle"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:padding="@dimen/payStub_displayTextPadding"
+                    android:text="0"
+                    android:textSize="@dimen/payStub_displayTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvDeduction_colYTD"
+                    app:layout_constraintRight_toRightOf="@+id/tvDeduction_colYTD"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_colDeductions" />
 
-                        android:layout_row="1"
-                        android:gravity="start|center_vertical"
-                        android:minWidth="50dp"
-                        android:text="Vision Ins. "
-                        android:textSize="@dimen/payStub_rowTitleTextSize" />
-
-
-                    <TextView
-                        android:id="@+id/tvDeduction_visionInsurance"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="1"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="1"
-                        android:background="@drawable/display_rectangle"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/payStub_displayTextPadding"
-                        android:text="1522.00"
-                        android:textSize="@dimen/payStub_displayTextSize" />
-
-                    <TextView
-                        android:id="@+id/tvDeduction_visionInsuranceYTD"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="2"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="1"
-                        android:background="@drawable/display_rectangle"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/payStub_displayTextPadding"
-                        android:text="130,050.00"
-                        android:textSize="@dimen/payStub_displayTextSize" />
-
-                    <!--Dental Insurance-->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="0"
-                        android:layout_gravity="top|start"
-                        android:layout_margin="5dp"
-
-                        android:layout_row="2"
-                        android:gravity="start|center_vertical"
-                        android:minWidth="50dp"
-                        android:text="Dental Ins. "
-                        android:textSize="@dimen/payStub_rowTitleTextSize" />
+                <!--State Tax-->
+                <TextView
+                    android:id="@+id/tvDeduction_stateTaxTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="start|center_vertical"
+                    android:text="State Tax"
+                    android:textSize="@dimen/payStub_rowTitleTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/guidelineA"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_federalTaxTitle" />
 
 
-                    <TextView
-                        android:id="@+id/tvDeduction_dentalInsurance"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="1"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="2"
-                        android:background="@drawable/display_rectangle"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/payStub_displayTextPadding"
-                        android:text="1522.00"
-                        android:textSize="@dimen/payStub_displayTextSize" />
+                <TextView
+                    android:id="@+id/tvDeduction_stateTax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/display_rectangle"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:padding="@dimen/payStub_displayTextPadding"
+                    android:text="1522.00"
+                    android:textSize="@dimen/payStub_displayTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvDeduction_colTotal"
+                    app:layout_constraintRight_toRightOf="@+id/tvDeduction_colTotal"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_federalTaxTitle" />
 
-                    <TextView
-                        android:id="@+id/tvDeduction_dentalInsuranceYTD"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="2"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="2"
-                        android:background="@drawable/display_rectangle"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/payStub_displayTextPadding"
-                        android:text="130,050.00"
-                        android:textSize="@dimen/payStub_displayTextSize" />
+                <TextView
+                    android:id="@+id/tvDeduction_stateTaxYTD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/display_rectangle"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:padding="@dimen/payStub_displayTextPadding"
+                    android:text="13,150.00"
+                    android:textSize="@dimen/payStub_displayTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvDeduction_colYTD"
+                    app:layout_constraintRight_toRightOf="@+id/tvDeduction_colYTD"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_federalTaxTitle" />
 
-                    <!--Short Term Disability Insurance-->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="0"
-                        android:layout_gravity="top|start"
-                        android:layout_margin="5dp"
-
-                        android:layout_row="3"
-                        android:gravity="start|center_vertical"
-                        android:minWidth="50dp"
-                        android:text="ST Disability "
-                        android:textSize="@dimen/payStub_rowTitleTextSize" />
-
-
-                    <TextView
-                        android:id="@+id/tvDeduction_stdisabilityInsurance"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="1"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="3"
-                        android:background="@drawable/display_rectangle"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/payStub_displayTextPadding"
-                        android:text="1522.00"
-                        android:textSize="@dimen/payStub_displayTextSize" />
-
-                    <TextView
-                        android:id="@+id/tvDeduction_stdisabilityInsuranceYTD"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="2"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="3"
-                        android:background="@drawable/display_rectangle"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/payStub_displayTextPadding"
-                        android:text="130,050.00"
-                        android:textSize="@dimen/payStub_displayTextSize" />
-
-                    <!--Long Term Disability Insurance-->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="0"
-                        android:layout_gravity="top|start"
-                        android:layout_margin="5dp"
-
-                        android:layout_row="4"
-                        android:gravity="start|center_vertical"
-                        android:minWidth="50dp"
-                        android:text="LT Disability "
-                        android:textSize="@dimen/payStub_rowTitleTextSize" />
+                <!--Social Security-->
+                <TextView
+                    android:id="@+id/tvDeduction_socialSecurityTaxTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="start|center_vertical"
+                    android:text="Social Security"
+                    android:textSize="@dimen/payStub_rowTitleTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/guidelineA"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_stateTaxTitle" />
 
 
-                    <TextView
-                        android:id="@+id/tvDeduction_ltdisabilityInsurance"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="1"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="4"
-                        android:background="@drawable/display_rectangle"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/payStub_displayTextPadding"
-                        android:text="1522.00"
-                        android:textSize="@dimen/payStub_displayTextSize" />
+                <TextView
+                    android:id="@+id/tvDeduction_socialSecurityTax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/display_rectangle"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:padding="@dimen/payStub_displayTextPadding"
+                    android:text="2.00"
+                    android:textSize="@dimen/payStub_displayTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvDeduction_colTotal"
+                    app:layout_constraintRight_toRightOf="@+id/tvDeduction_colTotal"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_stateTaxTitle" />
 
-                    <TextView
-                        android:id="@+id/tvDeduction_ltdisabilityInsuranceYTD"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="2"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="4"
-                        android:background="@drawable/display_rectangle"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/payStub_displayTextPadding"
-                        android:text="130,050.00"
-                        android:textSize="@dimen/payStub_displayTextSize" />
+                <TextView
+                    android:id="@+id/tvDeduction_socialSecurityTaxYTD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/display_rectangle"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:padding="@dimen/payStub_displayTextPadding"
+                    android:text="9.0"
+                    android:textSize="@dimen/payStub_displayTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvDeduction_colYTD"
+                    app:layout_constraintRight_toRightOf="@+id/tvDeduction_colYTD"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_stateTaxTitle" />
 
-                    <!--Life Insurance-->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="0"
-                        android:layout_gravity="top|start"
-                        android:layout_margin="5dp"
-                        android:layout_row="5"
-                        android:gravity="start|center_vertical"
-                        android:minWidth="50dp"
-                        android:text="Life Ins. "
-                        android:textSize="@dimen/payStub_rowTitleTextSize" />
+                <!--Medicare-->
+                <TextView
+                    android:id="@+id/tvDeduction_medicareTaxTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="start|center_vertical"
+                    android:text="Medicare"
+                    android:textSize="@dimen/payStub_rowTitleTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/guidelineA"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_socialSecurityTaxTitle" />
+
+                <TextView
+                    android:id="@+id/tvDeduction_medicareTax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/display_rectangle"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:padding="@dimen/payStub_displayTextPadding"
+                    android:text="1522.00"
+                    android:textSize="@dimen/payStub_displayTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvDeduction_colTotal"
+                    app:layout_constraintRight_toRightOf="@+id/tvDeduction_colTotal"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_socialSecurityTaxTitle" />
+
+                <TextView
+                    android:id="@+id/tvDeduction_medicareTaxYTD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/display_rectangle"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:padding="@dimen/payStub_displayTextPadding"
+                    android:text="12.0"
+                    android:textSize="@dimen/payStub_displayTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvDeduction_colYTD"
+                    app:layout_constraintRight_toRightOf="@+id/tvDeduction_colYTD"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_socialSecurityTaxTitle" />
 
 
-                    <TextView
-                        android:id="@+id/tvDeduction_lifeInsurance"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="1"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="5"
-                        android:background="@drawable/display_rectangle"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/payStub_displayTextPadding"
-                        android:text="1522.00"
-                        android:textSize="@dimen/payStub_displayTextSize" />
-
-                    <TextView
-                        android:id="@+id/tvDeduction_lifeInsuranceYTD"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="2"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="5"
-                        android:background="@drawable/display_rectangle"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/payStub_displayTextPadding"
-                        android:text="130,050.00"
-                        android:textSize="@dimen/payStub_displayTextSize" />
+                <!--Medical Insurance-->
+                <TextView
+                    android:id="@+id/tvDeduction_medicareInsuranceTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="start|center_vertical"
+                    android:text="Medical Ins."
+                    android:textSize="@dimen/payStub_rowTitleTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/guidelineA"
+                    app:layout_constraintTop_toBottomOf="@id/tvDeduction_medicareTaxTitle" />
 
 
-                </GridLayout>
-            </android.support.v7.widget.CardView>
+                <TextView
+                    android:id="@+id/tvDeduction_medicareInsurance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/display_rectangle"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:padding="@dimen/payStub_displayTextPadding"
+                    android:text="1522.00"
+                    android:textSize="@dimen/payStub_displayTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvDeduction_colTotal"
+                    app:layout_constraintRight_toRightOf="@+id/tvDeduction_colTotal"
+                    app:layout_constraintTop_toBottomOf="@id/tvDeduction_medicareTaxTitle" />
 
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                <TextView
+                    android:id="@+id/tvDeduction_medicareInsuranceYTD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/display_rectangle"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:padding="@dimen/payStub_displayTextPadding"
+                    android:text="130,050.00"
+                    android:textSize="@dimen/payStub_displayTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvDeduction_colYTD"
+                    app:layout_constraintRight_toRightOf="@+id/tvDeduction_colYTD"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_medicareTaxTitle" />
 
-                android:padding="10dp"
+                <!--Vision Ins.-->
+                <TextView
+                    android:id="@+id/tvDeduction_visionInsuranceTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="start|center_vertical"
+                    android:text="Vision Ins."
+                    android:textSize="@dimen/payStub_rowTitleTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/guidelineA"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_medicareInsuranceTitle" />
 
-                >
 
-                <GridLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tvDeduction_visionInsurance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/display_rectangle"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:padding="@dimen/payStub_displayTextPadding"
+                    android:text="1522.00"
+                    android:textSize="@dimen/payStub_displayTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvDeduction_colTotal"
+                    app:layout_constraintRight_toRightOf="@+id/tvDeduction_colTotal"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_medicareInsuranceTitle" />
+
+                <TextView
+                    android:id="@+id/tvDeduction_visionInsuranceYTD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/display_rectangle"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:padding="@dimen/payStub_displayTextPadding"
+                    android:text="130,050.00"
+                    android:textSize="@dimen/payStub_displayTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvDeduction_colYTD"
+                    app:layout_constraintRight_toRightOf="@+id/tvDeduction_colYTD"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_medicareInsuranceTitle" />
+
+                <!--Dental Insurance-->
+                <TextView
+                    android:id="@+id/tvDeduction_dentalInsuranceTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="start|center_vertical"
+                    android:text="Dental Ins."
+                    android:textSize="@dimen/payStub_rowTitleTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/guidelineA"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_visionInsuranceTitle" />
+
+
+                <TextView
+                    android:id="@+id/tvDeduction_dentalInsurance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/display_rectangle"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:padding="@dimen/payStub_displayTextPadding"
+                    android:text="1522.00"
+                    android:textSize="@dimen/payStub_displayTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvDeduction_colTotal"
+                    app:layout_constraintRight_toRightOf="@+id/tvDeduction_colTotal"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_visionInsuranceTitle" />
+
+                <TextView
+                    android:id="@+id/tvDeduction_dentalInsuranceYTD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/display_rectangle"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:padding="@dimen/payStub_displayTextPadding"
+                    android:text="130,050.00"
+                    android:textSize="@dimen/payStub_displayTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvDeduction_colYTD"
+                    app:layout_constraintRight_toRightOf="@+id/tvDeduction_colYTD"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_visionInsuranceTitle" />
+
+                <!--Short Term Disability Insurance-->
+                <TextView
+                    android:id="@+id/tvDeduction_stdisabilityInsuranceTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="start|center_vertical"
+                    android:text="ST Disability"
+                    android:textSize="@dimen/payStub_rowTitleTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/guidelineA"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_dentalInsuranceTitle" />
+
+
+                <TextView
+                    android:id="@+id/tvDeduction_stdisabilityInsurance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/display_rectangle"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:padding="@dimen/payStub_displayTextPadding"
+                    android:text="1522.00"
+                    android:textSize="@dimen/payStub_displayTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvDeduction_colTotal"
+                    app:layout_constraintRight_toRightOf="@+id/tvDeduction_colTotal"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_dentalInsuranceTitle" />
+
+                <TextView
+                    android:id="@+id/tvDeduction_stdisabilityInsuranceYTD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/display_rectangle"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:padding="@dimen/payStub_displayTextPadding"
+                    android:text="130,050.00"
+                    android:textSize="@dimen/payStub_displayTextSize"
+                    app:layout_constraintHorizontal_bias="0.491"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvDeduction_colYTD"
+                    app:layout_constraintRight_toRightOf="@+id/tvDeduction_colYTD"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_dentalInsuranceTitle" />
+
+                <!--Long Term Disability Insurance-->
+                <TextView
+                    android:id="@+id/tvDeduction_ltdisabilityInsuranceTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="start|center_vertical"
+                    android:text="LT Disability"
+                    android:textSize="@dimen/payStub_rowTitleTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/guidelineA"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_stdisabilityInsuranceTitle" />
+
+
+                <TextView
+                    android:id="@+id/tvDeduction_ltdisabilityInsurance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/display_rectangle"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:padding="@dimen/payStub_displayTextPadding"
+                    android:text="1522.00"
+                    android:textSize="@dimen/payStub_displayTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvDeduction_colTotal"
+                    app:layout_constraintRight_toRightOf="@+id/tvDeduction_colTotal"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_stdisabilityInsuranceTitle" />
+
+                <TextView
+                    android:id="@+id/tvDeduction_ltdisabilityInsuranceYTD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/display_rectangle"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:padding="@dimen/payStub_displayTextPadding"
+                    android:text="130,050.00"
+                    android:textSize="@dimen/payStub_displayTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvDeduction_colYTD"
+                    app:layout_constraintRight_toRightOf="@+id/tvDeduction_colYTD"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_stdisabilityInsuranceTitle" />
+
+                <!--Life Insurance-->
+                <TextView
+                    android:id="@+id/tvDeduction_lifeInsuranceTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="start|center_vertical"
+                    android:text="Life Ins."
+                    android:textSize="@dimen/payStub_rowTitleTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/guidelineA"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_ltdisabilityInsuranceTitle" />
+
+
+                <TextView
+                    android:id="@+id/tvDeduction_lifeInsurance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/display_rectangle"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:padding="@dimen/payStub_displayTextPadding"
+                    android:text="1522.00"
+                    android:textSize="@dimen/payStub_displayTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvDeduction_colTotal"
+                    app:layout_constraintRight_toRightOf="@+id/tvDeduction_colTotal"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_ltdisabilityInsuranceTitle" />
+
+                <TextView
+                    android:id="@+id/tvDeduction_lifeInsuranceYTD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/display_rectangle"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:padding="@dimen/payStub_displayTextPadding"
+                    android:text="130,050.00"
+                    android:textSize="@dimen/payStub_displayTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvDeduction_colYTD"
+                    app:layout_constraintRight_toRightOf="@+id/tvDeduction_colYTD"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_ltdisabilityInsuranceTitle" />
+
+
+                <!--Advances Deducted-->
+                <TextView
+                    android:id="@+id/tvDeduction_advancesDeductedTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="start|center_vertical"
+                    android:text="Advances Ded."
+                    android:textSize="@dimen/payStub_rowTitleTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/guidelineA"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_lifeInsuranceTitle" />
+
+                <TextView
+                    android:id="@+id/tvDeduction_advance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/display_rectangle"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:padding="@dimen/payStub_displayTextPadding"
+                    android:text="1522.00"
+                    android:textSize="@dimen/payStub_displayTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvDeduction_colTotal"
+                    app:layout_constraintRight_toRightOf="@+id/tvDeduction_colTotal"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_lifeInsuranceTitle" />
+
+                <TextView
+                    android:id="@+id/tvDeduction_advanceYTD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/display_rectangle"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:padding="@dimen/payStub_displayTextPadding"
+                    android:text="130.00"
+                    android:textSize="@dimen/payStub_displayTextSize"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvDeduction_colYTD"
+                    app:layout_constraintRight_toRightOf="@+id/tvDeduction_colYTD"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_lifeInsuranceTitle" />
+
+
+                <!--Total Deductions-->
+                <TextView
+                    android:id="@+id/tvDeduction_totalPayTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
+                    android:gravity="start|center_vertical"
+                    android:text="Totals"
+                    android:textSize="@dimen/payStub_rowTitleTextSize"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="@+id/guidelineA"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_advancesDeductedTitle"
+                    app:layout_constraintVertical_bias="1.0" />
+
+                <TextView
+                    android:id="@+id/tvDeduction_totalPay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/display_rectangle"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:padding="@dimen/payStub_displayTextPadding"
+                    android:text="1522.00"
+                    android:textSize="@dimen/payStub_displayTextSize"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvDeduction_colTotal"
+                    app:layout_constraintRight_toRightOf="@+id/tvDeduction_colTotal"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_advancesDeductedTitle" />
+
+                <TextView
+                    android:id="@+id/tvDeduction_totalPayYTD"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/payStub_rowTextViewHeight"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/display_rectangle"
+                    android:gravity="center"
+                    android:minWidth="60dp"
+                    android:padding="@dimen/payStub_displayTextPadding"
+                    android:text="130,050.00"
+                    android:textSize="@dimen/payStub_displayTextSize"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="@+id/tvDeduction_colYTD"
+                    app:layout_constraintRight_toRightOf="@+id/tvDeduction_colYTD"
+                    app:layout_constraintTop_toBottomOf="@+id/tvDeduction_advancesDeductedTitle" />
+
+
+                <android.support.constraint.Guideline
+                    android:id="@+id/guidelineA"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:columnCount="3"
-                    android:rowCount="1">
-                    <!--Advances Deducted-->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="0"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="top|start"
-                        android:layout_margin="5dp"
-                        android:layout_row="0"
-                        android:gravity="start|center_vertical"
-                        android:minWidth="50dp"
-                        android:text="Advance "
-                        android:textSize="@dimen/payStub_rowTitleTextSize" />
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.05" />
 
-                    <TextView
-                        android:id="@+id/tvDeduction_advance"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="1"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="0"
-                        android:background="@drawable/display_rectangle"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/payStub_displayTextPadding"
-                        android:text="1522.00"
-                        android:textSize="@dimen/payStub_displayTextSize" />
-
-                    <TextView
-                        android:id="@+id/tvDeduction_advanceYTD"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="2"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="0"
-                        android:background="@drawable/display_rectangle"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/payStub_displayTextPadding"
-                        android:text="130,050.00"
-                        android:textSize="@dimen/payStub_displayTextSize" />
-
-                </GridLayout>
-            </android.support.v7.widget.CardView>
-
-
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-
-                android:padding="10dp"
-
-                >
-
-                <GridLayout
-                    android:layout_width="match_parent"
+                <android.support.constraint.Guideline
+                    android:id="@+id/guidelineS"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:columnCount="3"
-                    android:rowCount="1">
-                    <!--Total Deductions-->
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="0"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="top|start"
-                        android:layout_margin="5dp"
-                        android:layout_row="0"
-                        android:gravity="start|center_vertical"
-                        android:minWidth="50dp"
-                        android:text="Totals "
-                        android:textSize="@dimen/payStub_rowTitleTextSize" />
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.6" />
 
-                    <TextView
-                        android:id="@+id/tvDeduction_totalPay"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="1"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="0"
-                        android:background="@drawable/display_rectangle"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/payStub_displayTextPadding"
-                        android:text="1522.00"
-                        android:textSize="@dimen/payStub_displayTextSize" />
+                <android.support.constraint.Guideline
+                    android:id="@+id/guidelineE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.85" />
 
-                    <TextView
-                        android:id="@+id/tvDeduction_totalPayYTD"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/payStub_rowTextViewHeight"
-                        android:layout_column="2"
-                        android:layout_columnWeight="1"
-                        android:layout_gravity="top|end"
-                        android:layout_margin="5dp"
-                        android:layout_row="0"
-                        android:background="@drawable/display_rectangle"
-                        android:gravity="center"
-                        android:minWidth="50dp"
-                        android:padding="@dimen/payStub_displayTextPadding"
-                        android:text="130,050.00"
-                        android:textSize="@dimen/payStub_displayTextSize" />
-
-                </GridLayout>
-            </android.support.v7.widget.CardView>
+            </android.support.constraint.ConstraintLayout>
 
 
         </LinearLayout>
-    </android.support.v7.widget.CardView>
 
+    </android.support.v7.widget.CardView>
 
 </LinearLayout>
