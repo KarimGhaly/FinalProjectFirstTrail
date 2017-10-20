@@ -160,14 +160,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.77" />
+                    app:layout_constraintGuide_percent="0.7" />
 
                 <Button
                     android:id="@+id/tvPto_btnViewRequestedPto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="View Requested PTO"
+                    android:text="Requested PTO"
+
+                    android:minWidth="120dp"
                     app:layout_constraintLeft_toLeftOf="@id/guidelineC"
                     app:layout_constraintRight_toRightOf="@id/guidelineC"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -177,7 +179,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="View Used PTO"
+                    android:text="Used PTO"
+
+                    android:minWidth="120dp"
                     app:layout_constraintLeft_toLeftOf="@id/guidelineE"
                     app:layout_constraintRight_toRightOf="@id/guidelineE"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -189,9 +193,24 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginTop="8dp"
                     android:text="Request PTO"
+
+                    android:minWidth="120dp"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="@id/guidelineD"
-                    app:layout_constraintRight_toRightOf="@id/guidelineD"
+                    app:layout_constraintLeft_toLeftOf="@id/guidelineE"
+                    app:layout_constraintRight_toRightOf="@id/guidelineE"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPto_btnViewUsedPto" />
+
+                <Button
+                    android:id="@+id/tvPto_btnViewUpcomingHolidays"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:minWidth="120dp"
+                    android:text="Holidays Off"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="@id/guidelineC"
+                    app:layout_constraintRight_toRightOf="@id/guidelineC"
                     app:layout_constraintTop_toBottomOf="@+id/tvPto_btnViewUsedPto" />
 
             </android.support.constraint.ConstraintLayout>
@@ -211,6 +230,13 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <include
+                layout="@layout/benefits_list_item"
+                />
+
+            <include
+                layout="@layout/benefits_list_item"
+                />
             <include
                 layout="@layout/benefits_list_item"
                 />
