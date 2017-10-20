@@ -28,16 +28,6 @@
         android:layout_height="wrap_content"
         android:text="Upload Receipt" />
 
-    <TextView
-        android:id="@+id/tvSubmitExpense_photoUrl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autoLink="web"
-        android:gravity="center"
-        android:linksClickable="true"
-        android:text="Photo Url"
-        android:textColor="@color/colorPrimary"
-        android:textSize="15sp" />
 
     <LinearLayout
         android:layout_width="match_parent"

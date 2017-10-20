@@ -56,8 +56,7 @@
                     android:layout_height="55dp"
                     android:hint="Email"
                     android:inputType="textEmailAddress"
-                    android:maxLines="1"
-                    android:text="karimghaly.mac@gmail.com" />
+                    android:maxLines="1" />
             </android.support.design.widget.TextInputLayout>
 
             <android.support.design.widget.TextInputLayout
