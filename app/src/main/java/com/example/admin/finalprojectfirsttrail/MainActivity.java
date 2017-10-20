@@ -20,7 +20,6 @@ import com.example.admin.finalprojectfirsttrail.InfoClass.ContactInfoClass;
 import com.example.admin.finalprojectfirsttrail.InfoClass.HousingInfoClass;
 import com.example.admin.finalprojectfirsttrail.InfoClass.PaySlipInfoClass;
 import com.example.admin.finalprojectfirsttrail.InfoClass.TeamBindingClass;
-import com.example.admin.finalprojectfirsttrail.InfoClass.TeamInfoClass;
 import com.example.admin.finalprojectfirsttrail.TFragments.AccountFragment;
 import com.example.admin.finalprojectfirsttrail.TFragments.BenefitsFragment;
 import com.example.admin.finalprojectfirsttrail.TFragments.MarketingFragment;
@@ -36,9 +35,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     public static final String TAG = "MainActivityTAG";
@@ -121,7 +118,9 @@ public class MainActivity extends AppCompatActivity {
                     setAccountFlagInfo();
                 } else {
                     Log.d(TAG, "openTab: Not First Time");
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content, accountFrag, "frag").commit();
+                    getSupportFragmentManager().beginTransaction()
+                            .setCustomAnimations(R.anim.slide_in,R.anim.slide_out)
+                            .replace(R.id.content, accountFrag, "frag").commit();
                 }
                 break;
             }
@@ -133,7 +132,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     Log.d(TAG, "openTab: Not First");
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content, payFrag, "frag").commit();
+                    getSupportFragmentManager().beginTransaction()
+                            .setCustomAnimations(R.anim.slide_in,R.anim.slide_out)
+                            .replace(R.id.content, payFrag, "frag")
+                            .commit();
                 }
                 break;
             case 3:
@@ -143,7 +145,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     Log.d(TAG, "openTab: Not First");
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content, benefitsFrag, "frag").commit();
+                    getSupportFragmentManager().beginTransaction()
+                            .setCustomAnimations(R.anim.slide_in,R.anim.slide_out)
+                            .replace(R.id.content, benefitsFrag, "frag").commit();
                 }
                 break;
             case 4:
@@ -154,7 +158,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     Log.d(TAG, "openTab: Not First");
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content, trainingFrag, "frag").commit();
+                    getSupportFragmentManager().beginTransaction()
+                            .setCustomAnimations(R.anim.slide_in,R.anim.slide_out)
+                            .replace(R.id.content, trainingFrag, "frag").commit();
                 }
                 break;
             case 5:
@@ -166,7 +172,9 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     Log.d(TAG, "openTab: Not First");
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content, marketingFrag, "frag").commit();
+                    getSupportFragmentManager().beginTransaction()
+                            .setCustomAnimations(R.anim.slide_in,R.anim.slide_out)
+                            .replace(R.id.content, marketingFrag, "frag").commit();
                 }
                 break;
         }
@@ -298,7 +306,9 @@ public class MainActivity extends AppCompatActivity {
     private void CreateAccountFragment() {
         Log.d(TAG, "CreateAccountFragment: ");
         accountFrag = new AccountFragment(accountFragClass);
-        getSupportFragmentManager().beginTransaction().replace(R.id.content, accountFrag, "frag").commit();
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.slide_in,R.anim.slide_out)
+                .replace(R.id.content, accountFrag, "frag").commit();
     }
 
 
@@ -329,22 +339,30 @@ public class MainActivity extends AppCompatActivity {
 
     private void CreatePayFragment(){
         payFrag = new PayFragment(payStubFragClass);
-        getSupportFragmentManager().beginTransaction().replace(R.id.content,payFrag, "frag").commit();
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.slide_in,R.anim.slide_out)
+                .replace(R.id.content,payFrag, "frag").commit();
     }
 
     private void CreateBenfitsFragment()
     {
         benefitsFrag = new BenefitsFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.content, benefitsFrag, "frag").commit();
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.slide_in,R.anim.slide_out)
+                .replace(R.id.content, benefitsFrag, "frag").commit();
     }
     private void CreateTrainingFragment()
     {
         trainingFrag = new TrainingFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.content, trainingFrag, "frag").commit();
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.slide_in,R.anim.slide_out)
+                .replace(R.id.content, trainingFrag, "frag").commit();
     }
     private void CreateMarketFragment(){
         marketingFrag = new MarketingFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.content, marketingFrag, "frag").commit();
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.slide_in,R.anim.slide_out)
+                .replace(R.id.content, marketingFrag, "frag").commit();
 
     }
 
