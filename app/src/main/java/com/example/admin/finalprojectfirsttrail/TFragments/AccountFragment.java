@@ -1,13 +1,16 @@
 package com.example.admin.finalprojectfirsttrail.TFragments;
 
 
+import android.animation.LayoutTransition;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
+import android.support.transition.Visibility;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
@@ -18,6 +21,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateInterpolator;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.Transformation;
+import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -205,7 +212,6 @@ public class AccountFragment extends Fragment {
     LinearLayout llTeamlist;
     @BindView(R.id.cvTeam)
     CardView cvTeam;
-
     FirebaseAuth auth;
 
     Unbinder unbinder;
@@ -337,7 +343,7 @@ public class AccountFragment extends Fragment {
     }
 
     private void setTeamUI(TeamInfoClass team) {
-        if(team!=null) {
+        if (team != null) {
             tvTeamName.setText(team.getTeam_Name());
             MainActivity_TeamAdapter adapter = new MainActivity_TeamAdapter(team.getTeam_Members());
             rvAccountTeamList.setAdapter(adapter);
@@ -389,8 +395,9 @@ public class AccountFragment extends Fragment {
     }
 
 
-
     private void openAccount() {
+        TranslateAnimation anim = null;
+
         if (tabOpen != 1) {
             svAccounts.setVisibility(View.VISIBLE);
             ivAccountChevron.setImageDrawable(ContextCompat.getDrawable(getContext(), ic_expand_more_black_24dp));
@@ -402,9 +409,18 @@ public class AccountFragment extends Fragment {
             ivTeamChevron.setImageDrawable(ContextCompat.getDrawable(getContext(), ic_chevron_right_black_24dp));
             tabOpen = 1;
         } else {
+            LayoutTransition lt = collapseTransition();
+            LayoutTransition lt2 = collapseTransition();
+            LayoutTransition lt3 = collapseTransition();
+
+            cvContacts.setLayoutTransition(lt);
+            cvTeam.setLayoutTransition(lt2);
+            cvLodging.setLayoutTransition(lt3);
+
             svAccounts.setVisibility(View.GONE);
             ivAccountChevron.setImageDrawable(ContextCompat.getDrawable(getContext(), ic_chevron_right_black_24dp));
             tabOpen = 0;
+
         }
     }
 
@@ -420,6 +436,14 @@ public class AccountFragment extends Fragment {
             ivTeamChevron.setImageDrawable(ContextCompat.getDrawable(getContext(), ic_chevron_right_black_24dp));
             tabOpen = 2;
         } else {
+            LayoutTransition lt = collapseTransition();
+            LayoutTransition lt2 = collapseTransition();
+            LayoutTransition lt3 = collapseTransition();
+
+            cvContacts.setLayoutTransition(lt);
+            cvTeam.setLayoutTransition(lt2);
+            cvAccount.setLayoutTransition(lt3);
+
             svLodging.setVisibility(View.GONE);
             ivLodgingChevron.setImageDrawable(ContextCompat.getDrawable(getContext(), ic_chevron_right_black_24dp));
             tabOpen = 0;
@@ -438,6 +462,14 @@ public class AccountFragment extends Fragment {
             ivTeamChevron.setImageDrawable(ContextCompat.getDrawable(getContext(), ic_chevron_right_black_24dp));
             tabOpen = 3;
         } else {
+            LayoutTransition lt = collapseTransition();
+            LayoutTransition lt2 = collapseTransition();
+            LayoutTransition lt3 = collapseTransition();
+
+            cvAccount.setLayoutTransition(lt);
+            cvTeam.setLayoutTransition(lt2);
+            cvLodging.setLayoutTransition(lt3);
+
             svContacts.setVisibility(View.GONE);
             ivContactsChevron.setImageDrawable(ContextCompat.getDrawable(getContext(), ic_chevron_right_black_24dp));
             tabOpen = 0;
@@ -457,12 +489,46 @@ public class AccountFragment extends Fragment {
 
             tabOpen = 4;
         } else {
+            LayoutTransition lt = collapseTransition();
+            LayoutTransition lt2 = collapseTransition();
+            LayoutTransition lt3 = collapseTransition();
+
+            cvContacts.setLayoutTransition(lt);
+            cvAccount.setLayoutTransition(lt2);
+            cvLodging.setLayoutTransition(lt3);
             llTeamlist.setVisibility(View.GONE);
             ivTeamChevron.setImageDrawable(ContextCompat.getDrawable(getContext(), ic_chevron_right_black_24dp));
             tabOpen = 0;
         }
     }
 
+
+    private LayoutTransition collapseTransition()
+    {
+        LayoutTransition lt = new LayoutTransition();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            lt.enableTransitionType(LayoutTransition.CHANGING);
+
+        }
+
+
+        lt.addTransitionListener(new LayoutTransition.TransitionListener() {
+            @Override
+            public void startTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i) {
+
+            }
+
+            @Override
+            public void endTransition(LayoutTransition layoutTransition, ViewGroup viewGroup, View view, int i) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                    layoutTransition.disableTransitionType(LayoutTransition.CHANGING);
+                }
+                viewGroup.setLayoutTransition(layoutTransition);
+            }
+        });
+
+        return lt;
+    }
 
     @Override
     public void onDestroyView() {
