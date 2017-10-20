@@ -45,9 +45,9 @@
                     android:layout_marginBottom="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
-                    android:textSize="@dimen/payStub_rowTitleTextSize"
                     android:padding="5dp"
                     android:text="Total PTO:"
+                    android:textSize="@dimen/payStub_rowTitleTextSize"
                     app:layout_constraintLeft_toLeftOf="@+id/guidelineA"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -77,12 +77,11 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginTop="8dp"
 
-                    android:textSize="@dimen/payStub_rowTitleTextSize"
                     android:padding="5dp"
                     android:text="Used PTO"
-                    app:layout_constraintTop_toBottomOf="@+id/textView"
+                    android:textSize="@dimen/payStub_rowTitleTextSize"
                     app:layout_constraintLeft_toLeftOf="@+id/guidelineA"
-                     />
+                    app:layout_constraintTop_toBottomOf="@+id/textView" />
 
                 <TextView
                     android:id="@+id/textView4"
@@ -95,8 +94,8 @@
                     android:background="@drawable/display_rectangle"
                     android:gravity="center"
                     android:minWidth="60dp"
-                    android:textSize="@dimen/payStub_displayTextSize"
                     android:text="5"
+                    android:textSize="@dimen/payStub_displayTextSize"
                     app:layout_constraintBottom_toBottomOf="@+id/textView3"
                     app:layout_constraintLeft_toLeftOf="@+id/guidelineB"
                     app:layout_constraintRight_toLeftOf="@+id/guidelineB"
@@ -127,23 +126,18 @@
                     android:background="@drawable/display_rectangle"
                     android:gravity="center"
                     android:minWidth="60dp"
-                    android:textSize="@dimen/payStub_displayTextSize"
                     android:text="10"
+                    android:textSize="@dimen/payStub_displayTextSize"
                     app:layout_constraintBottom_toBottomOf="@+id/textView5"
                     app:layout_constraintLeft_toLeftOf="@+id/guidelineB"
                     app:layout_constraintRight_toLeftOf="@+id/guidelineB"
-                    app:layout_constraintTop_toTopOf="@+id/textView5"
-                    />
+                    app:layout_constraintTop_toTopOf="@+id/textView5" />
 
             </android.support.constraint.ConstraintLayout>
 
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp">
-
-                <!--Total PTO-->
-                <!--Total PTO-->
-                <!--Total PTO-->
+                android:layout_height="wrap_content">
 
 
                 <android.support.constraint.Guideline
@@ -151,14 +145,54 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.05" />
+                    app:layout_constraintGuide_percent="0.3" />
+
 
                 <android.support.constraint.Guideline
                     android:id="@+id/guidelineD"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    app:layout_constraintGuide_percent="0.85" />
+                    app:layout_constraintGuide_percent="0.5" />
+
+                <android.support.constraint.Guideline
+                    android:id="@+id/guidelineE"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.77" />
+
+                <Button
+                    android:id="@+id/tvPto_btnViewRequestedPto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="View Requested PTO"
+                    app:layout_constraintLeft_toLeftOf="@id/guidelineC"
+                    app:layout_constraintRight_toRightOf="@id/guidelineC"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/tvPto_btnViewUsedPto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="View Used PTO"
+                    app:layout_constraintLeft_toLeftOf="@id/guidelineE"
+                    app:layout_constraintRight_toRightOf="@id/guidelineE"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <Button
+                    android:id="@+id/tvPto_btnRequestPto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Request PTO"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="@id/guidelineD"
+                    app:layout_constraintRight_toRightOf="@id/guidelineD"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPto_btnViewUsedPto" />
 
             </android.support.constraint.ConstraintLayout>
 
