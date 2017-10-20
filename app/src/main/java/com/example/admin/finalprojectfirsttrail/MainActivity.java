@@ -119,7 +119,9 @@ public class MainActivity extends AppCompatActivity {
                     setAccountFlagInfo();
                 } else {
                     Log.d(TAG, "openTab: Not First Time");
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content, accountFrag, "frag").commit();
+                    getSupportFragmentManager().beginTransaction()
+                            .setCustomAnimations(R.anim.slide_in_right,R.anim.slide_out_left)
+                            .replace(R.id.content, accountFrag, "frag").commit();
                 }
                 break;
             }
@@ -131,7 +133,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     Log.d(TAG, "openTab: Not First");
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content, payFrag, "frag").commit();
+                    getSupportFragmentManager().beginTransaction()
+                            .setCustomAnimations(R.anim.slide_in_right,R.anim.slide_out_left)
+                            .replace(R.id.content, payFrag, "frag")
+                            .commit();
                 }
                 break;
             case 3:
@@ -141,7 +146,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     Log.d(TAG, "openTab: Not First");
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content, benefitsFrag, "frag").commit();
+                    getSupportFragmentManager().beginTransaction()
+                            .setCustomAnimations(R.anim.slide_in_right,R.anim.slide_out_left)
+                            .replace(R.id.content, benefitsFrag, "frag").commit();
                 }
                 break;
             case 4:
@@ -152,7 +159,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 else {
                     Log.d(TAG, "openTab: Not First");
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content, trainingFrag, "frag").commit();
+                    getSupportFragmentManager().beginTransaction()
+                            .setCustomAnimations(R.anim.slide_in_right,R.anim.slide_out_left)
+                            .replace(R.id.content, trainingFrag, "frag").commit();
                 }
                 break;
             case 5:
@@ -164,7 +173,9 @@ public class MainActivity extends AppCompatActivity {
                 else
                 {
                     Log.d(TAG, "openTab: Not First");
-                    getSupportFragmentManager().beginTransaction().replace(R.id.content, marketingFrag, "frag").commit();
+                    getSupportFragmentManager().beginTransaction()
+                            .setCustomAnimations(R.anim.slide_in_right,R.anim.slide_out_left)
+                            .replace(R.id.content, marketingFrag, "frag").commit();
                 }
                 break;
         }
@@ -327,22 +338,30 @@ public class MainActivity extends AppCompatActivity {
 
     private void CreatePayFragment(){
         payFrag = new PayFragment(payStubFragClass);
-        getSupportFragmentManager().beginTransaction().replace(R.id.content,payFrag, "frag").commit();
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.slide_in_right,R.anim.slide_out_left)
+                .replace(R.id.content,payFrag, "frag").commit();
     }
 
     private void CreateBenfitsFragment()
     {
         benefitsFrag = new BenefitsFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.content, benefitsFrag, "frag").commit();
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.slide_in_right,R.anim.slide_out_left)
+                .replace(R.id.content, benefitsFrag, "frag").commit();
     }
     private void CreateTrainingFragment()
     {
         trainingFrag = new TrainingFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.content, trainingFrag, "frag").commit();
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.slide_in_right,R.anim.slide_out_left)
+                .replace(R.id.content, trainingFrag, "frag").commit();
     }
     private void CreateMarketFragment(){
         marketingFrag = new MarketingFragment();
-        getSupportFragmentManager().beginTransaction().replace(R.id.content, marketingFrag, "frag").commit();
+        getSupportFragmentManager().beginTransaction()
+                .setCustomAnimations(R.anim.slide_in_right,R.anim.slide_out_left)
+                .replace(R.id.content, marketingFrag, "frag").commit();
 
     }
 
