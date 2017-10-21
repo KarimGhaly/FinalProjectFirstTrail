@@ -24,6 +24,7 @@ import com.example.admin.finalprojectfirsttrail.InfoClass.PTOInfoClass;
 import com.example.admin.finalprojectfirsttrail.InfoClass.PTORequestInfoClass;
 import com.example.admin.finalprojectfirsttrail.R;
 import com.example.admin.finalprojectfirsttrail.RecyclerViewApadpters.InsuranceRecyclerView;
+import com.example.admin.finalprojectfirsttrail.RecyclerViewApadpters.RequestPTORecyclerAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -49,7 +50,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class BenefitsFragment extends Fragment {
+public class BenefitsFragment extends Fragment implements RequestPTORecyclerAdapter.RequestPTORecyclerAdapterInterface{
     public static final String TAG = "BenefitsFragmentTAG";
 
     FirebaseDatabase database;
@@ -159,7 +160,20 @@ public class BenefitsFragment extends Fragment {
     }
 
     private void ShowRecyclerViewDialog(List<PTORequestInfoClass> ptoRequestsList) {
-
+        final Dialog recyclerViewdilaog = new Dialog(getContext());
+        recyclerViewdilaog.setContentView(R.layout.alert_dialog_recyclerview);
+        RecyclerView recyclerView = recyclerViewdilaog.findViewById(R.id.RecyclerViewViewAdvances);
+        RequestPTORecyclerAdapter adapter = new RequestPTORecyclerAdapter(ptoRequestsList,this);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        Button CloseBTN = recyclerViewdilaog.findViewById(R.id.alertDialogCloseBTN);
+        CloseBTN.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recyclerViewdilaog.dismiss();
+            }
+        });
+        recyclerViewdilaog.show();
     }
 
     public void RequestPTO() {
@@ -212,37 +226,41 @@ public class BenefitsFragment extends Fragment {
         btnSubmitRequestPto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PTORequestInfoClass ptoRequestInfoClass = new PTORequestInfoClass();
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+                if(!tvRequestPtoDateFrom.getText().toString().isEmpty() && !tvRequestPtoDateTo.getText().toString().isEmpty()) {
+                    PTORequestInfoClass ptoRequestInfoClass = new PTORequestInfoClass();
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
 
-                try {
-                    ptoRequestInfoClass.setDateFrom(simpleDateFormat.parse(tvRequestPtoDateFrom.getText().toString()));
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    ptoRequestInfoClass.setDateTo(simpleDateFormat.parse(tvRequestPtoDateTo.getText().toString()));
-                } catch (ParseException e) {
-                    Log.d(TAG, "onClick: "+e.getMessage());
-                    e.printStackTrace();
-                }
-                ptoRequestInfoClass.setDateRequest(new Date());
-                ptoRequestInfoClass.setDescription(tvRequestPtoDescription.getText().toString());
-                ptoRequestInfoClass.setStatus("Pending");
-                ref.child("Requested PTO").push().setValue(ptoRequestInfoClass, new DatabaseReference.CompletionListener() {
-                    @Override
-                    public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                        if(databaseError == null)
-                        {
-                            Toast.makeText(getContext(), "PTO Submitted Successfully", Toast.LENGTH_SHORT).show();
-                            dialog.dismiss();
-                        }
-                        else {
-                            Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
-                            Log.d(TAG, "onComplete: "+databaseError.getMessage());
-                        }
+                    try {
+                        ptoRequestInfoClass.setDateFrom(simpleDateFormat.parse(tvRequestPtoDateFrom.getText().toString()));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
                     }
-                });
+                    try {
+                        ptoRequestInfoClass.setDateTo(simpleDateFormat.parse(tvRequestPtoDateTo.getText().toString()));
+                    } catch (ParseException e) {
+                        Log.d(TAG, "onClick: " + e.getMessage());
+                        e.printStackTrace();
+                    }
+                    ptoRequestInfoClass.setDateRequest(new Date());
+                    ptoRequestInfoClass.setDescription(tvRequestPtoDescription.getText().toString());
+                    ptoRequestInfoClass.setStatus("Pending");
+                    ref.child("Requested PTO").push().setValue(ptoRequestInfoClass, new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                            if (databaseError == null) {
+                                Toast.makeText(getContext(), "PTO Submitted Successfully", Toast.LENGTH_SHORT).show();
+                                dialog.dismiss();
+                            } else {
+                                Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
+                                Log.d(TAG, "onComplete: " + databaseError.getMessage());
+                            }
+                        }
+                    });
+                }
+                else {
+                    Toast.makeText(getContext(), "Please Enter From and To Dates", Toast.LENGTH_SHORT).show();
+                    
+                }
             }
         });
         dialog.show();
@@ -297,4 +315,8 @@ public class BenefitsFragment extends Fragment {
         RequestPTO();
     }
 
+    @Override
+    public void updatePTORequest(PTORequestInfoClass pto) {
+
+    }
 }
