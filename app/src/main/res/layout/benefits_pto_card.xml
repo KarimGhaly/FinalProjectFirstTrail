@@ -155,23 +155,16 @@
                         android:text="Requested PTO" />
 
                     <Button
-                        android:id="@+id/tvPto_btnViewUsedPto"
+                        android:id="@+id/tvPto_btnRequestPto"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:minHeight="50dp"
                         android:textSize="16dp"
-                        android:text="Used PTO" />
+                        android:text="Request PTO" />
 
                 </LinearLayout>
 
-                <Button
-                    android:id="@+id/tvPto_btnRequestPto"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textSize="16dp"
-                    android:minHeight="50dp"
-                    android:text="Request PTO" />
 
             </LinearLayout>
 
