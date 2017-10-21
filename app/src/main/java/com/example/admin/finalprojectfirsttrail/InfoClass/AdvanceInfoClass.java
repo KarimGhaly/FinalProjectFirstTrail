@@ -11,15 +11,25 @@ public class AdvanceInfoClass {
     String descriction;
     String status;
     Date date;
+    String key;
 
     public AdvanceInfoClass() {
     }
 
-    public AdvanceInfoClass(float amount, String descriction, String status, Date date) {
+    public AdvanceInfoClass(float amount, String descriction, String status, Date date, String key) {
         this.amount = amount;
         this.descriction = descriction;
         this.status = status;
         this.date = date;
+        this.key = key;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public float getAmount() {

@@ -12,16 +12,26 @@ public class PTORequestInfoClass {
     Date dateRequest;
     String description;
     String status;
+    String key;
 
     public PTORequestInfoClass() {
     }
 
-    public PTORequestInfoClass(Date dateFrom, Date dateTo, Date dateRequest, String description, String status) {
+    public PTORequestInfoClass(Date dateFrom, Date dateTo, Date dateRequest, String description, String status, String key) {
         this.dateFrom = dateFrom;
         this.dateTo = dateTo;
         this.dateRequest = dateRequest;
         this.description = description;
         this.status = status;
+        this.key=key;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public Date getDateFrom() {

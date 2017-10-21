@@ -16,20 +16,30 @@ public class ExpenseInfoClass {
     private String photoUrl;
     private Date date;
     private String status;
+    private String key;
 
     public ExpenseInfoClass() {
     }
 
-    public ExpenseInfoClass(float amount, String description, String photoUrl, Date date, String status) {
+    public ExpenseInfoClass(float amount, String description, String photoUrl, Date date, String status, String key) {
         this.amount = amount;
         this.description = description;
         this.photoUrl = photoUrl;
         this.date = date;
         this.status = status;
+        this.key = key;
     }
 
     public String getStatus() {
         return status;
+    }
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 
     public void setStatus(String status) {

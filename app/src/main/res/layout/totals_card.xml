@@ -19,7 +19,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/textView"
+                android:id="@+id/tvPto_totalPtoTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
@@ -50,7 +50,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/tvPto_totalPto"
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:layout_gravity="center_vertical"
@@ -62,7 +62,7 @@
                 android:text="Gross Pay YTD:"
                 android:textSize="@dimen/payStub_rowTitleTextSize"
                 app:layout_constraintRight_toLeftOf="@+id/guidelineA"
-                app:layout_constraintTop_toBottomOf="@+id/textView" />
+                app:layout_constraintTop_toBottomOf="@+id/tvPto_totalPtoTitle" />
 
             <TextView
                 android:id="@+id/tvTotals_grossPayYTD"
@@ -93,7 +93,7 @@
                 android:textSize="@dimen/payStub_rowTitleTextSize"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintRight_toLeftOf="@+id/guidelineA"
-                app:layout_constraintTop_toBottomOf="@+id/textView2"
+                app:layout_constraintTop_toBottomOf="@+id/tvPto_totalPto"
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView

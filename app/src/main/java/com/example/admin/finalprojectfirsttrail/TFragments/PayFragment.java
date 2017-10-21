@@ -58,7 +58,7 @@ import static android.app.Activity.RESULT_OK;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class PayFragment extends Fragment {
+public class PayFragment extends Fragment implements AdvanceRecyclerAdapter.RecyclerViewInterface {
     public static final String TAG = "PayFragmentTAG";
     PayStubFragClass payStubFragClass;
     @BindView(R.id.payStubTitle)
@@ -266,10 +266,12 @@ public class PayFragment extends Fragment {
                 if(expense) {
                     List<ExpenseInfoClass> expensesList = new ArrayList<ExpenseInfoClass>();
                     for (DataSnapshot D : dataSnapshot.getChildren()) {
-                        expensesList.add(D.getValue(ExpenseInfoClass.class));
+                        ExpenseInfoClass expense = D.getValue(ExpenseInfoClass.class);
+                        expense.setKey(D.getKey());
+                        expensesList.add(expense);
                     }
                     Collections.reverse(expensesList);
-                    advanceRecyclerAdapter = new AdvanceRecyclerAdapter(null,expensesList);
+                    advanceRecyclerAdapter = new AdvanceRecyclerAdapter(null,expensesList,PayFragment.this);
                 }
                 else
                 {
@@ -278,7 +280,7 @@ public class PayFragment extends Fragment {
                         advanceInfoClasses.add(D.getValue(AdvanceInfoClass.class));
                     }
                     Collections.reverse(advanceInfoClasses);
-                    advanceRecyclerAdapter = new AdvanceRecyclerAdapter(advanceInfoClasses,null);
+                    advanceRecyclerAdapter = new AdvanceRecyclerAdapter(advanceInfoClasses,null,PayFragment.this);
                 }
                 recyclerView.setAdapter(advanceRecyclerAdapter);
             }
@@ -363,5 +365,15 @@ public class PayFragment extends Fragment {
         {
             imageUploaded =3;
         }
+    }
+
+    @Override
+    public void updateRecord(AdvanceInfoClass advanceInfoClass) {
+        Toast.makeText(getContext(), String.valueOf(advanceInfoClass.getAmount()), Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void updateRecord(ExpenseInfoClass expenseInfoClass) {
+        Toast.makeText(getContext(), expenseInfoClass.getKey(), Toast.LENGTH_SHORT).show();
     }
 }

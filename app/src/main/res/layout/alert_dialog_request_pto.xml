@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="match_parent"
+    android:minWidth="300dp"
     android:orientation="vertical"
     android:paddingBottom="15dp"
     android:paddingLeft="10dp"
@@ -14,14 +15,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Date From: MM/DD/YYYY"
-        android:inputType="date" />
+        android:clickable="true"
+        android:inputType="none" />
 
     <EditText
         android:id="@+id/tvRequestPto_dateTo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Date To: MM/DD/YYYY"
-        android:inputType="date" />
+        android:inputType="none"
+        android:clickable="true"/>
 
 
     <EditText
@@ -45,7 +48,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.35"
-            android:onClick="submitRequestPto"
             android:text="Submit" />
 
         <Button
@@ -53,7 +55,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.35"
-            android:onClick="cancelAlertDialog"
             android:text="Cancel" />
 
     </LinearLayout>

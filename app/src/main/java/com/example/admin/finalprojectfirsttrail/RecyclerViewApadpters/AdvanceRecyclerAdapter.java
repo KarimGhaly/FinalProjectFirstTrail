@@ -29,17 +29,25 @@ public class AdvanceRecyclerAdapter extends RecyclerView.Adapter<AdvanceRecycler
 
     private static final String TAG = "RecyclerViewAdapter";
 
+    public interface RecyclerViewInterface{
+        public void updateRecord(AdvanceInfoClass advanceInfoClass);
+        public void updateRecord(ExpenseInfoClass expenseInfoClass);
+    }
+
     @Nullable
     List<AdvanceInfoClass> AdvancesList;
 
     @Nullable
     List<ExpenseInfoClass> ExpensesList;
 
+    RecyclerViewInterface recyclerViewInterface;
+
     private Context context;
 
-    public AdvanceRecyclerAdapter(@Nullable List<AdvanceInfoClass> advancesList,@Nullable List<ExpenseInfoClass> expensesList) {
+    public AdvanceRecyclerAdapter(@Nullable List<AdvanceInfoClass> advancesList,@Nullable List<ExpenseInfoClass> expensesList,RecyclerViewInterface recyclerViewInterface) {
         AdvancesList = advancesList;
         ExpensesList = expensesList;
+        this.recyclerViewInterface = recyclerViewInterface;
     }
 
     @Override
@@ -53,16 +61,32 @@ public class AdvanceRecyclerAdapter extends RecyclerView.Adapter<AdvanceRecycler
     public void onBindViewHolder(ViewHolder holder, int position) {
         SimpleDateFormat df = new SimpleDateFormat("MM/dd/yyyy");
         if(AdvancesList != null) {
-            AdvanceInfoClass advance = AdvancesList.get(position);
+            final AdvanceInfoClass advance = AdvancesList.get(position);
             holder.txtRecyclerADVDate.setText("Date: " + df.format(advance.getDate()));
             holder.txtRecyclerADVAmount.setText("Amount: " + String.valueOf(advance.getAmount()));
             holder.txtRecyclerADVStatus.setText("Status: " + advance.getStatus());
+
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    recyclerViewInterface.updateRecord(advance);
+                    return true;
+                }
+            });
         } else
         {
-            ExpenseInfoClass expense = ExpensesList.get(position);
+            final ExpenseInfoClass expense = ExpensesList.get(position);
             holder.txtRecyclerADVDate.setText("Date: " + df.format(expense.getDate()));
             holder.txtRecyclerADVAmount.setText("Amount: " + String.valueOf(expense.getAmount()));
             holder.txtRecyclerADVStatus.setText("Status: " + expense.getStatus());
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    recyclerViewInterface.updateRecord(expense);
+                    return true;
+                }
+            });
+
         }
     }
 

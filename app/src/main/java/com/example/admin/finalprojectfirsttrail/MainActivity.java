@@ -14,10 +14,13 @@ import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.admin.finalprojectfirsttrail.FragmentClass.AccountFragClass;
+import com.example.admin.finalprojectfirsttrail.FragmentClass.BenfitiesFragClass;
 import com.example.admin.finalprojectfirsttrail.FragmentClass.PayStubFragClass;
 import com.example.admin.finalprojectfirsttrail.InfoClass.ConsultantInfoClass;
 import com.example.admin.finalprojectfirsttrail.InfoClass.ContactInfoClass;
 import com.example.admin.finalprojectfirsttrail.InfoClass.HousingInfoClass;
+import com.example.admin.finalprojectfirsttrail.InfoClass.InsuranceInfoClass;
+import com.example.admin.finalprojectfirsttrail.InfoClass.PTOInfoClass;
 import com.example.admin.finalprojectfirsttrail.InfoClass.PaySlipInfoClass;
 import com.example.admin.finalprojectfirsttrail.InfoClass.TeamBindingClass;
 import com.example.admin.finalprojectfirsttrail.TFragments.AccountFragment;
@@ -57,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
     AccountFragClass accountFragClass;
     PayStubFragClass payStubFragClass;
+    BenfitiesFragClass benfitiesFragClass;
 
 
     @Override
@@ -139,9 +143,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case 3:
-                if(benefitsFrag==null) {
+                if(benfitiesFragClass == null) {
                     Log.d(TAG, "openTab: First Time");
-                    CreateBenfitsFragment();
+                    getBenfits();
                 }
                 else {
                     Log.d(TAG, "openTab: Not First");
@@ -344,9 +348,46 @@ public class MainActivity extends AppCompatActivity {
                 .replace(R.id.content,payFrag, "frag").commit();
     }
 
+    private void getBenfits(){
+        benfitiesFragClass = new BenfitiesFragClass();
+        ref.child(uid).child("Training Phase").child("Benefits").child("PTO").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                benfitiesFragClass.setPtoInfoClass(dataSnapshot.getValue(PTOInfoClass.class));
+                ref.child(uid).child("Training Phase").child("Benefits").child("PTO").removeEventListener(this);
+                getInsuranceList();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void getInsuranceList() {
+        ref.child(uid).child("Training Phase").child("Benefits").child("Insurance").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot D: dataSnapshot.getChildren())
+                {
+                    benfitiesFragClass.addtoInsuranceClass(D.getValue(InsuranceInfoClass.class));
+                }
+                CreateBenfitsFragment();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
     private void CreateBenfitsFragment()
     {
-        benefitsFrag = new BenefitsFragment();
+        benefitsFrag = new BenefitsFragment(benfitiesFragClass);
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.slide_in,R.anim.slide_out)
                 .replace(R.id.content, benefitsFrag, "frag").commit();
