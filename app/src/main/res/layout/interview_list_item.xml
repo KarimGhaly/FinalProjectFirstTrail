@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="350dp"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context="com.example.admin.finalprojectfirsttrail.TFragments.MarketingFragment">
 
@@ -242,7 +242,6 @@
                     android:text="www.myitworks.com"
                     app:layout_constraintTop_toTopOf="@+id/tvInterviews_clientWebsiteTitle"
                     app:layout_constraintRight_toLeftOf="@+id/guidelineZ"
-                    android:layout_marginTop="0dp"
                     android:layout_marginRight="8dp" />
 
 
