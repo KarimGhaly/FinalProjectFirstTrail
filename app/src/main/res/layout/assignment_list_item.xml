@@ -20,8 +20,7 @@
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/colorCardBackground"
-
+                    android:background="@color/colorAccent"
                     >
 
                     <!--Assignment Info Class-->
@@ -31,6 +30,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:layout_marginLeft="8dp"
+
+                        android:textColor="@color/white"
                         android:layout_marginStart="8dp"
                         android:layout_marginTop="8dp"
                         android:text="Week 1 Day 1: Github Tutorial"
@@ -46,6 +47,8 @@
                         android:layout_marginEnd="8dp"
                         android:layout_marginRight="8dp"
                         android:layout_marginTop="8dp"
+
+                        android:textColor="@color/white"
                         android:text="90.00"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintRight_toRightOf="parent"
