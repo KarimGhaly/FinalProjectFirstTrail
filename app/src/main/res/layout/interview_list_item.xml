@@ -27,7 +27,7 @@
                 >
 
                 <TextView
-                    android:id="@+id/tvInterviews_companyTitle"
+                    android:id="@+id/tvInterviews_interviewTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
@@ -35,28 +35,12 @@
                     android:layout_marginLeft="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="My IT Works, Final Round"
+                    android:text="My IT Works"
                     android:textColor="@color/white"
                     android:textSize="18sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
-            </android.support.constraint.ConstraintLayout>
-
-            <android.support.constraint.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:id="@+id/tvInterviews_dateTimeTitle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
-                    android:layout_marginTop="8dp"
-                    android:text="Time:"
-                    app:layout_constraintLeft_toLeftOf="@+id/guideline"
-                    app:layout_constraintTop_toTopOf="parent" />
-
 
 
                 <TextView
@@ -64,13 +48,16 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
                     android:text="10/21/2017"
-                    app:layout_constraintLeft_toRightOf="@+id/tvInterviews_dateTimeTitle"
+                    android:textColor="@color/white"
+                    app:layout_constraintRight_toLeftOf="@+id/tvInterviews_interviewTime"
+                    android:layout_marginRight="8dp"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_goneMarginBottom="8dp" />
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="8dp"
+                    app:layout_constraintVertical_bias="0.6" />
 
 
                 <TextView
@@ -78,37 +65,48 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
                     android:text="10:30PM"
-                    app:layout_constraintLeft_toRightOf="@+id/tvInterviews_interviewDate"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:textColor="@color/white"
+                    android:layout_marginRight="8dp"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_marginBottom="8dp" />
+
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/tvInterviews_interviewNamesTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="8dp"
+
                     android:layout_marginEnd="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="8dp"
                     android:text="Interviewer Names:"
                     app:layout_constraintBottom_toBottomOf="@+id/tvInterviews_interviewerNames"
                     app:layout_constraintLeft_toLeftOf="@+id/guideline"
-                    app:layout_constraintTop_toBottomOf="@+id/tvInterviews_interviewTime" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tvInterviews_interviewerNames"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="8dp"
                     android:layout_marginStart="8dp"
                     android:text="Ruffus"
-                    app:layout_constraintLeft_toRightOf="@+id/tvInterviews_interviewNamesTitle"
-                    app:layout_constraintTop_toTopOf="@+id/tvInterviews_interviewNamesTitle" />
+                    app:layout_constraintTop_toTopOf="@+id/tvInterviews_interviewNamesTitle"
+                    app:layout_constraintRight_toLeftOf="@+id/guidelineZ"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="8dp" />
 
                 <TextView
                     android:id="@+id/tvInterviews_mentorNameTitle"
@@ -117,10 +115,10 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="0dp"
+                    android:layout_marginTop="8dp"
                     android:text="Mentor:"
                     app:layout_constraintLeft_toLeftOf="@+id/guideline"
-                    app:layout_constraintTop_toTopOf="@+id/tvInterviews_mentorName" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvInterviews_interviewNamesTitle" />
 
 
 
@@ -130,12 +128,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginLeft="8dp"
                     android:layout_marginStart="8dp"
-                    android:layout_marginTop="8dp"
                     android:text="Manroop Singh"
-                    app:layout_constraintLeft_toRightOf="@+id/tvInterviews_mentorNameTitle"
-                    app:layout_constraintTop_toBottomOf="@+id/tvInterviews_interviewNamesTitle" />
+                    app:layout_constraintTop_toTopOf="@+id/tvInterviews_mentorNameTitle"
+                    app:layout_constraintRight_toLeftOf="@+id/guidelineZ"
+                    android:layout_marginRight="8dp" />
 
 
                 <TextView
@@ -153,10 +150,11 @@
                     android:id="@+id/tvInterviews_client"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
                     android:text="My IT Works"
-                    app:layout_constraintLeft_toRightOf="@+id/tvInterviews_clientTitle"
-                    app:layout_constraintTop_toTopOf="@+id/tvInterviews_clientTitle" />
+                    app:layout_constraintTop_toTopOf="@+id/tvInterviews_clientTitle"
+                    app:layout_constraintRight_toLeftOf="@+id/guidelineZ"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="8dp" />
                 <TextView
                     android:id="@+id/tvInterviews_vendorTitle"
                     android:layout_width="wrap_content"
@@ -170,10 +168,11 @@
                     android:id="@+id/tvInterviews_vendor"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
                     android:text="Ektello"
-                    app:layout_constraintLeft_toRightOf="@+id/tvInterviews_vendorTitle"
-                    app:layout_constraintTop_toTopOf="@+id/tvInterviews_vendorTitle" />
+                    app:layout_constraintTop_toTopOf="@+id/tvInterviews_vendorTitle"
+                    app:layout_constraintRight_toLeftOf="@+id/guidelineZ"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="8dp" />
                 <TextView
                     android:id="@+id/tvInterviews_projectCityAndStateTitle"
                     android:layout_width="wrap_content"
@@ -188,10 +187,11 @@
                     android:id="@+id/tvInterviews_projectCityAndState"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
                     android:text="Palmetta, Florida"
-                    app:layout_constraintLeft_toRightOf="@+id/tvInterviews_projectCityAndStateTitle"
-                    app:layout_constraintTop_toTopOf="@+id/tvInterviews_projectCityAndStateTitle" />
+                    app:layout_constraintTop_toTopOf="@+id/tvInterviews_projectCityAndStateTitle"
+                    app:layout_constraintRight_toLeftOf="@+id/guidelineZ"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="8dp" />
 
                 <TextView
                     android:id="@+id/tvInterviews_projectDurationTitle"
@@ -207,10 +207,11 @@
                     android:id="@+id/tvInterviews_projectDuration"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
                     android:text="6+ Months contract to hire"
-                    app:layout_constraintLeft_toRightOf="@+id/tvInterviews_projectDurationTitle"
-                    app:layout_constraintTop_toTopOf="@+id/tvInterviews_projectDurationTitle" />
+                    app:layout_constraintTop_toTopOf="@+id/tvInterviews_projectDurationTitle"
+                    app:layout_constraintRight_toLeftOf="@+id/guidelineZ"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="8dp" />
 
                 <TextView
                     android:id="@+id/tvInterviews_availabilityDateTitle"
@@ -226,10 +227,11 @@
                     android:id="@+id/tvInterviews_availabilityDate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
                     android:text="Immediate"
-                    app:layout_constraintLeft_toRightOf="@+id/tvInterviews_availabilityDateTitle"
-                    app:layout_constraintTop_toTopOf="@+id/tvInterviews_availabilityDateTitle" />
+                    app:layout_constraintTop_toTopOf="@+id/tvInterviews_availabilityDateTitle"
+                    app:layout_constraintRight_toLeftOf="@+id/guidelineZ"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="8dp" />
                 <TextView
                     android:id="@+id/tvInterviews_clientWebsiteTitle"
                     android:layout_width="wrap_content"
@@ -244,10 +246,11 @@
                     android:id="@+id/tvInterviews_clientWebsite"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="8dp"
                     android:text="www.myitworks.com"
-                    app:layout_constraintLeft_toRightOf="@+id/tvInterviews_clientWebsiteTitle"
-                    app:layout_constraintTop_toTopOf="@+id/tvInterviews_clientWebsiteTitle" />
+                    app:layout_constraintTop_toTopOf="@+id/tvInterviews_clientWebsiteTitle"
+                    app:layout_constraintRight_toLeftOf="@+id/guidelineZ"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginRight="8dp" />
 
 
 
@@ -276,6 +279,12 @@
                     android:orientation="vertical"
                     app:layout_constraintGuide_percent=".05" />
 
+                <android.support.constraint.Guideline
+                    android:id="@+id/guidelineZ"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="1" />
 
 
 
