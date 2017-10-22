@@ -22,26 +22,25 @@
                     android:id="@+id/textView9"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginBottom="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:textSize="24sp"
                     android:text="Upcoming Interviews"
+                    android:textSize="24sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="parent"
                     app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginBottom="8dp" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </android.support.constraint.ConstraintLayout>
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                >
+                android:layout_margin="10dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -62,14 +61,14 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
                             android:layout_marginEnd="8dp"
-                            android:textColor="@color/white"
                             android:layout_marginLeft="8dp"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
                             android:text="JC Penny, 2nd Round"
+                            android:textColor="@color/white"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintLeft_toLeftOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent" />
+                            app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
                             android:id="@+id/tvInterviews_interviewTime"
@@ -77,15 +76,15 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
                             android:layout_marginEnd="8dp"
-                            android:textColor="@color/white"
+                            android:layout_marginRight="8dp"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
                             android:text="10:30PM"
-                            app:layout_constraintTop_toTopOf="parent"
+                            android:textColor="@color/white"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintVertical_bias="0.0"
-                            android:layout_marginRight="8dp"
-                            app:layout_constraintRight_toRightOf="parent" />
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0" />
 
                         <TextView
                             android:id="@+id/tvInterviews_interviewDate"
@@ -93,15 +92,15 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="8dp"
                             android:layout_marginEnd="8dp"
-                            android:textColor="@color/white"
+                            android:layout_marginRight="8dp"
                             android:layout_marginStart="8dp"
                             android:layout_marginTop="8dp"
                             android:text="10/21/2017"
-                            app:layout_constraintTop_toTopOf="parent"
+                            android:textColor="@color/white"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintVertical_bias="0.0"
                             app:layout_constraintRight_toLeftOf="@+id/tvInterviews_interviewTime"
-                            android:layout_marginRight="8dp" />
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.0" />
 
                     </android.support.constraint.ConstraintLayout>
 
@@ -127,29 +126,29 @@
                             android:id="@+id/tvInterviews_interviewNamesTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
                             android:layout_marginEnd="8dp"
                             android:layout_marginRight="8dp"
                             android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
                             android:text="Project Engineer"
-                            app:layout_constraintRight_toRightOf="parent"
                             app:layout_constraintBottom_toBottomOf="@+id/tvInterviews_interviewerNames"
-                            android:layout_marginBottom="8dp"
-                            app:layout_constraintTop_toTopOf="@+id/tvInterviews_interviewerNames"
-                            android:layout_marginTop="8dp" />
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tvInterviews_interviewerNames" />
 
 
                         <TextView
                             android:id="@+id/tvInterviews_interviewerContactInformation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="16dp"
-                            android:text="Contact Information"
-                            app:layout_constraintLeft_toRightOf="@+id/imageView"
-                            android:layout_marginLeft="16dp"
-                            app:layout_constraintBottom_toBottomOf="@+id/imageView"
                             android:layout_marginBottom="8dp"
-                            app:layout_constraintTop_toTopOf="@+id/imageView"
-                            android:layout_marginTop="8dp" />
+                            android:layout_marginLeft="16dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginTop="8dp"
+                            android:text="Contact Information"
+                            app:layout_constraintBottom_toBottomOf="@+id/imageView"
+                            app:layout_constraintLeft_toRightOf="@+id/imageView"
+                            app:layout_constraintTop_toTopOf="@+id/imageView" />
 
                         <TextView
                             android:id="@+id/tvInterviews_mentorName"
@@ -158,9 +157,9 @@
                             android:layout_marginEnd="8dp"
                             android:layout_marginLeft="8dp"
                             android:layout_marginStart="8dp"
+                            android:layout_marginTop="8dp"
                             android:text="Manroop Singh"
                             app:layout_constraintLeft_toLeftOf="@+id/guideline"
-                            android:layout_marginTop="8dp"
                             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
 
@@ -168,29 +167,29 @@
                             android:id="@+id/tvInterviews_mentorNameTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
                             android:layout_marginEnd="8dp"
                             android:layout_marginRight="7dp"
                             android:layout_marginStart="8dp"
-                            android:text="MAC Trainer"
-                            app:layout_constraintRight_toRightOf="parent"
                             android:layout_marginTop="8dp"
-                            app:layout_constraintTop_toTopOf="@+id/tvInterviews_mentorName"
+                            android:text="MAC Trainer"
                             app:layout_constraintBottom_toBottomOf="@+id/tvInterviews_mentorName"
-                            android:layout_marginBottom="8dp" />
+                            app:layout_constraintRight_toRightOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tvInterviews_mentorName" />
 
 
                         <TextView
                             android:id="@+id/tvInterviews_trainersContactInformation"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginBottom="8dp"
                             android:layout_marginLeft="8dp"
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="8dp"
                             android:text="Contact Information"
-                            app:layout_constraintTop_toBottomOf="@+id/tvInterviews_mentorName"
                             app:layout_constraintBottom_toBottomOf="parent"
-                            android:layout_marginBottom="8dp"
                             app:layout_constraintLeft_toRightOf="@+id/imageView2"
+                            app:layout_constraintTop_toBottomOf="@+id/tvInterviews_mentorName"
                             app:layout_constraintVertical_bias="0.571" />
 
 
@@ -205,23 +204,23 @@
                             android:id="@+id/imageView"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/ic_phone_black_24dp"
-                            android:layout_marginTop="8dp"
-                            app:layout_constraintTop_toBottomOf="@+id/tvInterviews_interviewerNames"
                             android:layout_marginLeft="8dp"
-                            app:layout_constraintLeft_toLeftOf="@+id/guideline" />
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintLeft_toLeftOf="@+id/guideline"
+                            app:layout_constraintTop_toBottomOf="@+id/tvInterviews_interviewerNames"
+                            app:srcCompat="@drawable/ic_phone_black_24dp" />
 
                         <ImageView
                             android:id="@+id/imageView2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            app:srcCompat="@drawable/ic_person_black_24dp"
-                            android:layout_marginLeft="8dp"
-                            app:layout_constraintLeft_toLeftOf="@+id/guideline"
-                            app:layout_constraintBottom_toBottomOf="parent"
                             android:layout_marginBottom="8dp"
+                            android:layout_marginLeft="8dp"
                             android:layout_marginTop="8dp"
-                            app:layout_constraintTop_toBottomOf="@+id/tvInterviews_mentorName" />
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintLeft_toLeftOf="@+id/guideline"
+                            app:layout_constraintTop_toBottomOf="@+id/tvInterviews_mentorName"
+                            app:srcCompat="@drawable/ic_person_black_24dp" />
 
                     </android.support.constraint.ConstraintLayout>
 
@@ -230,10 +229,18 @@
 
             <include
 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
                 layout="@layout/interview_list_item"
-                />
+                android:layout_width="match_parent"
+                android:layout_height="350dp" />
+
+            <include
+
+                layout="@layout/interview_list_item"
+                android:layout_width="match_parent"
+                android:layout_height="350dp" />
+
+
+
         </LinearLayout>
     </ScrollView>
 
