@@ -23,7 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorAccent"
-
+                android:id="@+id/clMarketing_InterviewTitle"
                 >
 
                 <TextView
@@ -76,7 +76,13 @@
 
 
             </android.support.constraint.ConstraintLayout>
-
+            <net.cachapa.expandablelayout.ExpandableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/elMarketing_InterviewInfo"
+                app:el_expanded="false"
+                app:el_duration="1000"
+                >
             <android.support.constraint.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -276,15 +282,9 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     app:layout_constraintGuide_percent="1" />
-
-
-
-
-
             </android.support.constraint.ConstraintLayout>
-
+            </net.cachapa.expandablelayout.ExpandableLayout>
         </LinearLayout>
     </android.support.v7.widget.CardView>
-
 
 </LinearLayout>

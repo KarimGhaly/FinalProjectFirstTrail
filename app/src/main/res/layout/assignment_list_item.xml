@@ -21,6 +21,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/colorAccent"
+                    android:id="@+id/clTraining_AssignmentCard"
                     >
 
                     <!--Assignment Info Class-->
@@ -55,12 +56,16 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </android.support.constraint.ConstraintLayout>
+                <net.cachapa.expandablelayout.ExpandableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:el_expanded="false"
+                    app:el_duration="1000"
+                    android:id="@+id/elTraining_AssignmentCard">
 
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-
-
                     <TextView
                         android:id="@+id/tvTraining_pastAssignmentFeedback"
                         android:layout_width="wrap_content"
@@ -73,9 +78,9 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintLeft_toLeftOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-
-
                 </android.support.constraint.ConstraintLayout>
+
+                </net.cachapa.expandablelayout.ExpandableLayout>
             </LinearLayout>
         </android.support.v7.widget.CardView>
 
