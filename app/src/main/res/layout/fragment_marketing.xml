@@ -124,7 +124,7 @@
 
 
                         <TextView
-                            android:id="@+id/tvInterviews_interviewJobTitle"
+                            android:id="@+id/tvInterviews_interviewNamesTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
@@ -152,7 +152,7 @@
                             android:layout_marginTop="8dp" />
 
                         <TextView
-                            android:id="@+id/tvInterviews_trainersName"
+                            android:id="@+id/tvInterviews_mentorName"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
@@ -165,7 +165,7 @@
 
 
                         <TextView
-                            android:id="@+id/tvInterviews_trainersJobTitle"
+                            android:id="@+id/tvInterviews_mentorNameTitle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="8dp"
@@ -174,8 +174,8 @@
                             android:text="MAC Trainer"
                             app:layout_constraintRight_toRightOf="parent"
                             android:layout_marginTop="8dp"
-                            app:layout_constraintTop_toTopOf="@+id/tvInterviews_trainersName"
-                            app:layout_constraintBottom_toBottomOf="@+id/tvInterviews_trainersName"
+                            app:layout_constraintTop_toTopOf="@+id/tvInterviews_mentorName"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvInterviews_mentorName"
                             android:layout_marginBottom="8dp" />
 
 
@@ -187,7 +187,7 @@
                             android:layout_marginStart="16dp"
                             android:layout_marginTop="8dp"
                             android:text="Contact Information"
-                            app:layout_constraintTop_toBottomOf="@+id/tvInterviews_trainersName"
+                            app:layout_constraintTop_toBottomOf="@+id/tvInterviews_mentorName"
                             app:layout_constraintBottom_toBottomOf="parent"
                             android:layout_marginBottom="8dp"
                             app:layout_constraintLeft_toRightOf="@+id/imageView2"
@@ -221,7 +221,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             android:layout_marginBottom="8dp"
                             android:layout_marginTop="8dp"
-                            app:layout_constraintTop_toBottomOf="@+id/tvInterviews_trainersName" />
+                            app:layout_constraintTop_toBottomOf="@+id/tvInterviews_mentorName" />
 
                     </android.support.constraint.ConstraintLayout>
 

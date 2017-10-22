@@ -79,7 +79,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tvInterviews_interviewJobTitle"
+                    android:id="@+id/tvInterviews_interviewNamesTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="@dimen/payStub_rowTextViewHeight"
                     android:layout_marginLeft="8dp"
@@ -154,7 +154,7 @@
                     android:text="Overtime "
                     android:textSize="@dimen/payStub_rowTitleTextSize"
                     app:layout_constraintLeft_toLeftOf="@+id/guidelineA"
-                    app:layout_constraintTop_toBottomOf="@+id/tvInterviews_interviewJobTitle" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvInterviews_interviewNamesTitle" />
 
                 <TextView
                     android:id="@+id/tvEarning_overtimeRate"
