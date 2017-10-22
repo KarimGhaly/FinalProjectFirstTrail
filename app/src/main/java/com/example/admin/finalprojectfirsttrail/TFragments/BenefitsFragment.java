@@ -3,6 +3,7 @@ package com.example.admin.finalprojectfirsttrail.TFragments;
 
 import android.app.Dialog;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.constraint.Guideline;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -25,6 +26,8 @@ import com.example.admin.finalprojectfirsttrail.InfoClass.PTORequestInfoClass;
 import com.example.admin.finalprojectfirsttrail.R;
 import com.example.admin.finalprojectfirsttrail.RecyclerViewApadpters.InsuranceRecyclerView;
 import com.example.admin.finalprojectfirsttrail.RecyclerViewApadpters.RequestPTORecyclerAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -73,8 +76,6 @@ public class BenefitsFragment extends Fragment implements RequestPTORecyclerAdap
     TextView tvPtoRemainingPto;
     @BindView(R.id.tvPto_btnViewRequestedPto)
     Button tvPtoBtnViewRequestedPto;
-    @BindView(R.id.tvPto_btnViewUsedPto)
-    Button tvPtoBtnViewUsedPto;
     @BindView(R.id.tvPto_btnRequestPto)
     Button tvPtoBtnRequestPto;
     @BindView(R.id.RVInsurance_benefits)
@@ -88,6 +89,8 @@ public class BenefitsFragment extends Fragment implements RequestPTORecyclerAdap
     private Date date;
     private EditText tvRequestPtoDateFrom;
     private EditText tvRequestPtoDateTo;
+    private List<PTORequestInfoClass> ptoRequestsList;
+    private RequestPTORecyclerAdapter adapter;
 
     public BenefitsFragment() {
         // Required empty public constructor
@@ -140,7 +143,7 @@ public class BenefitsFragment extends Fragment implements RequestPTORecyclerAdap
         ref.child("Requested PTO").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                List<PTORequestInfoClass> ptoRequestsList = new ArrayList<PTORequestInfoClass>();
+                ptoRequestsList = new ArrayList<PTORequestInfoClass>();
                 for(DataSnapshot D: dataSnapshot.getChildren())
                 {
                     PTORequestInfoClass pto = D.getValue(PTORequestInfoClass.class);
@@ -163,7 +166,7 @@ public class BenefitsFragment extends Fragment implements RequestPTORecyclerAdap
         final Dialog recyclerViewdilaog = new Dialog(getContext());
         recyclerViewdilaog.setContentView(R.layout.alert_dialog_recyclerview);
         RecyclerView recyclerView = recyclerViewdilaog.findViewById(R.id.RecyclerViewViewAdvances);
-        RequestPTORecyclerAdapter adapter = new RequestPTORecyclerAdapter(ptoRequestsList,this);
+        adapter = new RequestPTORecyclerAdapter(ptoRequestsList,this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         Button CloseBTN = recyclerViewdilaog.findViewById(R.id.alertDialogCloseBTN);
@@ -192,7 +195,7 @@ public class BenefitsFragment extends Fragment implements RequestPTORecyclerAdap
         tvRequestPtoDateFrom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               ShowDatePickerDialog(new Date(),true);
+               ShowDatePickerDialog(new Date(),true,tvRequestPtoDateFrom);
             }
         });
         tvRequestPtoDateTo.setOnClickListener(new View.OnClickListener() {
@@ -206,7 +209,7 @@ public class BenefitsFragment extends Fragment implements RequestPTORecyclerAdap
                         fromCalander.setTime(fromDate);
                         fromCalander.add(Calendar.DAY_OF_MONTH,1);
                         fromDate = fromCalander.getTime();
-                        ShowDatePickerDialog(fromDate,false);
+                        ShowDatePickerDialog(fromDate,false,tvRequestPtoDateTo);
                     } catch (ParseException e) {
                         e.printStackTrace();
                     }
@@ -265,7 +268,7 @@ public class BenefitsFragment extends Fragment implements RequestPTORecyclerAdap
         });
         dialog.show();
     }
-    private void ShowDatePickerDialog(Date MinDate, final boolean from)
+    private void ShowDatePickerDialog(Date MinDate, final boolean from, final EditText dateField)
     {
         final Dialog datepickDialog = new Dialog(getContext());
         datepickDialog.setContentView(R.layout.date_picker_layout);
@@ -279,12 +282,12 @@ public class BenefitsFragment extends Fragment implements RequestPTORecyclerAdap
                 calendar.set(datePicker.getYear(), datePicker.getMonth(), datePicker.getDayOfMonth());
                 SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
                 if(from) {
-                    tvRequestPtoDateFrom.setText(sdf.format(calendar.getTime()));
+                    dateField.setText(sdf.format(calendar.getTime()));
                     datepickDialog.dismiss();
                 }
                 else
                 {
-                    tvRequestPtoDateTo.setText(sdf.format(calendar.getTime()));
+                    dateField.setText(sdf.format(calendar.getTime()));
                     datepickDialog.dismiss();
                 }
 
@@ -306,9 +309,7 @@ public class BenefitsFragment extends Fragment implements RequestPTORecyclerAdap
 
 
 
-    @OnClick(R.id.tvPto_btnViewUsedPto)
-    public void onTvPtoBtnViewUsedPtoClicked() {
-    }
+
 
     @OnClick(R.id.tvPto_btnRequestPto)
     public void onTvPtoBtnRequestPtoClicked() {
@@ -316,7 +317,111 @@ public class BenefitsFragment extends Fragment implements RequestPTORecyclerAdap
     }
 
     @Override
-    public void updatePTORequest(PTORequestInfoClass pto) {
+    public void updatePTORequest(final PTORequestInfoClass pto) {
+        final Dialog updatePtoDialog = new Dialog(getContext());
+        updatePtoDialog.setTitle("Update Pto");
+        updatePtoDialog.setContentView(R.layout.alert_dialog_update_pto);
+        final EditText tvUpdatePtoDateFrom = updatePtoDialog.findViewById(R.id.tvUpdatePto_dateFrom);
+        final EditText tvUpdatePtoDateTo = updatePtoDialog.findViewById(R.id.tvUpdatePto_dateTo);
+        final EditText tvUpdatePto_description = updatePtoDialog.findViewById(R.id.tvUpdatePto_description);
+        tvUpdatePtoDateFrom.setKeyListener(null);
+        tvUpdatePtoDateTo.setKeyListener(null);
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        tvUpdatePtoDateFrom.setText(sdf.format(pto.getDateFrom()));
+        tvUpdatePtoDateTo.setText(sdf.format(pto.getDateTo()));
+        tvUpdatePto_description.setText(pto.getDescription());
 
+        Button btnSubmitUpdatePto = updatePtoDialog.findViewById(R.id.btnSubmitUpdatePto);
+        Button btnUpdateCancelAlertDialog = updatePtoDialog.findViewById(R.id.btnUpdateCancelAlertDialog);
+        Button btnDeleteUpdatePto = updatePtoDialog.findViewById(R.id.btnDeleteUpdatePto);
+
+        tvUpdatePtoDateFrom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShowDatePickerDialog(new Date(),true,tvUpdatePtoDateFrom);
+            }
+        });
+        tvUpdatePtoDateTo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+                if(!tvUpdatePtoDateFrom.getText().toString().isEmpty()) {
+                    try {
+                        Date fromDate = simpleDateFormat.parse(tvUpdatePtoDateFrom.getText().toString());
+                        Calendar fromCalander = Calendar.getInstance();
+                        fromCalander.setTime(fromDate);
+                        fromCalander.add(Calendar.DAY_OF_MONTH,1);
+                        fromDate = fromCalander.getTime();
+                        ShowDatePickerDialog(fromDate,false,tvUpdatePtoDateTo);
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                }
+                else
+                {
+                    Toast.makeText(getContext(), "Select Date From First", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+        btnUpdateCancelAlertDialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updatePtoDialog.dismiss();
+            }
+        });
+        btnSubmitUpdatePto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(!tvUpdatePtoDateFrom.getText().toString().isEmpty() && !tvUpdatePtoDateTo.getText().toString().isEmpty()) {
+                    PTORequestInfoClass ptoRequestInfoClass = new PTORequestInfoClass();
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MM/dd/yyyy");
+
+                    try {
+                        ptoRequestInfoClass.setDateFrom(simpleDateFormat.parse(tvUpdatePtoDateFrom.getText().toString()));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        ptoRequestInfoClass.setDateTo(simpleDateFormat.parse(tvUpdatePtoDateTo.getText().toString()));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    ptoRequestInfoClass.setDateRequest(pto.getDateRequest());
+                    ptoRequestInfoClass.setDescription(tvUpdatePto_description.getText().toString());
+                    ptoRequestInfoClass.setStatus("Pending");
+                    ref.child("Requested PTO").child(pto.getKey()).setValue(ptoRequestInfoClass, new DatabaseReference.CompletionListener() {
+                        @Override
+                        public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
+                            if (databaseError == null) {
+                                Toast.makeText(getContext(), "PTO Updated Successfully", Toast.LENGTH_SHORT).show();
+                                updatePtoDialog.dismiss();
+                            } else {
+                                Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
+                                Log.d(TAG, "onComplete: " + databaseError.getMessage());
+                            }
+                        }
+                    });
+                }
+                else {
+                    Toast.makeText(getContext(), "Please make sure you have entered from date and to date", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        btnDeleteUpdatePto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ref.child("Requested PTO").child(pto.getKey()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Toast.makeText(getContext(), "PTO Request Deleted Successfully", Toast.LENGTH_SHORT).show();
+                        ptoRequestsList.remove(pto);
+                        adapter.notifyDataSetChanged();
+                        updatePtoDialog.dismiss();
+                    }
+                });
+            }
+        });
+        updatePtoDialog.show();
     }
 }

@@ -69,6 +69,7 @@ public class AdvanceRecyclerAdapter extends RecyclerView.Adapter<AdvanceRecycler
             holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
                 @Override
                 public boolean onLongClick(View v) {
+                    if(!advance.getStatus().equals("Accepted"))
                     recyclerViewInterface.updateRecord(advance);
                     return true;
                 }
