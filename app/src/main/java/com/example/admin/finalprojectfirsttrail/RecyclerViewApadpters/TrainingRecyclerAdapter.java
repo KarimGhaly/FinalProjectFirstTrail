@@ -2,6 +2,7 @@ package com.example.admin.finalprojectfirsttrail.RecyclerViewApadpters;
 
 import android.content.Context;
 import android.support.constraint.ConstraintLayout;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +39,11 @@ public class TrainingRecyclerAdapter extends RecyclerView.Adapter<TrainingRecycl
 
     @Override
     public void onBindViewHolder(final TrainingRecyclerAdapter.ViewHolder holder, int position) {
+
+        if(position == 0)
+        {
+            holder.clTraining_AssignmentCard.setBackgroundColor(ContextCompat.getColor(context,R.color.colorAlertDialogButtons));
+        }
 
         holder.clTraining_AssignmentCard.setOnClickListener(new View.OnClickListener() {
             @Override
