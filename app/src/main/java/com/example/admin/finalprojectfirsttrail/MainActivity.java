@@ -90,7 +90,6 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        Log.d(TAG, "onSaveInstanceState: ");
         List<Fragment> fragmentList = fragmentManager.getFragments();
         for(Fragment frag : fragmentList)
         {
@@ -114,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        Log.d(TAG, "onRestoreInstanceState: ");
         if (savedInstanceState!=null){
             tabOpen = savedInstanceState.getInt("tabOpen");
         }
@@ -126,10 +124,8 @@ public class MainActivity extends AppCompatActivity {
         {
             case 1: {
                 if (accountFragClass == null) {
-                    Log.d(TAG, "openTab: First Time");
                     setAccountFlagInfo();
                 } else {
-                    Log.d(TAG, "openTab: Not First Time");
                     getSupportFragmentManager().beginTransaction()
                             .setCustomAnimations(R.anim.slide_in,R.anim.slide_out)
                             .replace(R.id.content, accountFrag, "frag").commit();
@@ -139,11 +135,9 @@ public class MainActivity extends AppCompatActivity {
             case 2:
                 if(payStubFragClass==null)
                 {
-                    Log.d(TAG, "openTab: First Time");
                     getPaySlips();
                 }
                 else {
-                    Log.d(TAG, "openTab: Not First");
                     getSupportFragmentManager().beginTransaction()
                             .setCustomAnimations(R.anim.slide_in,R.anim.slide_out)
                             .replace(R.id.content, payFrag, "frag")
@@ -152,11 +146,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case 3:
                 if(benfitiesFragClass == null) {
-                    Log.d(TAG, "openTab: First Time");
                     getBenfits();
                 }
                 else {
-                    Log.d(TAG, "openTab: Not First");
                     getSupportFragmentManager().beginTransaction()
                             .setCustomAnimations(R.anim.slide_in,R.anim.slide_out)
                             .replace(R.id.content, benefitsFrag, "frag").commit();
@@ -165,11 +157,9 @@ public class MainActivity extends AppCompatActivity {
             case 4:
                 if(trainingFragClass==null)
                 {
-                    Log.d(TAG, "openTab: First");
                     getTrainingData();
                 }
                 else {
-                    Log.d(TAG, "openTab: Not First");
                     getSupportFragmentManager().beginTransaction()
                             .setCustomAnimations(R.anim.slide_in,R.anim.slide_out)
                             .replace(R.id.content, trainingFrag, "frag").commit();
@@ -178,12 +168,10 @@ public class MainActivity extends AppCompatActivity {
             case 5:
                 if(interviewFragClass==null)
                 {
-                    Log.d(TAG, "openTab: First");
                     getInterviewList();
                 }
                 else
                 {
-                    Log.d(TAG, "openTab: Not First");
                     getSupportFragmentManager().beginTransaction()
                             .setCustomAnimations(R.anim.slide_in,R.anim.slide_out)
                             .replace(R.id.content, marketingFrag, "frag").commit();
@@ -216,7 +204,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                Log.d(TAG, "onCancelled: ");
+
             }
         });
     }
@@ -307,7 +295,7 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
-                Log.d(TAG, "onDataChange: ");
+
                 CreateAccountFragment();
             }
 
@@ -319,7 +307,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void CreateAccountFragment() {
-        Log.d(TAG, "CreateAccountFragment: ");
+
         accountFrag = new AccountFragment(accountFragClass);
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.slide_in,R.anim.slide_out)

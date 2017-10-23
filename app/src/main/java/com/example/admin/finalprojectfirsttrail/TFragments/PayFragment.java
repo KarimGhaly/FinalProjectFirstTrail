@@ -382,7 +382,6 @@ public class PayFragment extends Fragment implements AdvanceRecyclerAdapter.Recy
 
     @Override
     public void updateRecord(final AdvanceInfoClass advanceInfoClass) {
-        Log.d(TAG, "updateRecord: ");
         final Dialog updateAdvanceDialog = new Dialog(getContext());
         updateAdvanceDialog.setTitle("Update Advance");
         updateAdvanceDialog.setContentView(R.layout.alert_dialog_update_advance);
@@ -403,7 +402,6 @@ public class PayFragment extends Fragment implements AdvanceRecyclerAdapter.Recy
         btnUpdateDeleteBNT.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: "+advanceInfoClass.getKey());
                 ref.child("Advance").child(advanceInfoClass.getKey()).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {

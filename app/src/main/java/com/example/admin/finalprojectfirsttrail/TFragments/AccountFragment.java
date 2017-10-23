@@ -446,7 +446,6 @@ public class AccountFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        Log.d(TAG, "onDestroyView: ");
         unbinder.unbind();
     }
 }

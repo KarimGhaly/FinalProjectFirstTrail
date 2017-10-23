@@ -103,7 +103,7 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else {
                     Toast.makeText(LoginActivity.this, "Project Activity not Created Yet", Toast.LENGTH_SHORT).show();
-                    Log.d(TAG, "onDataChange: "+phase);
+
                 }
             }
 

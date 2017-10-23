@@ -129,7 +129,6 @@ public class PaySlipViewPagerAdapter extends PagerAdapter {
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 
         PaySlipInfoClass payslib = payslips.get(position);
-        Log.d(TAG, "instantiateItem: "+payslib.getPayDate().toString());
         tvDatePayDate.setText(dateFormat.format(payslib.getPayDate()));
         tvDateStartDate.setText(dateFormat.format(payslib.getFrom()));
         tvDateEndDate.setText(dateFormat.format(payslib.getTo()));
