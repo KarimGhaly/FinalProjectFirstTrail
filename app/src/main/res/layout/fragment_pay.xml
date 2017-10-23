@@ -58,7 +58,9 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
 
-            android:text="Approved Advances" />
+            android:text="View Advances"
+            android:textColor="@color/white"
+            android:theme="@style/MACButtonThemeAlternative" />
 
         <Button
             android:id="@+id/btnPayStubFrag_requestAdvance"
@@ -66,7 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
             android:layout_weight="1"
-            android:text="Need Advance?"
+            android:text="Request An Advance"
             android:textColor="@color/white"
             android:theme="@style/MACButtonThemeAlternative" />
     </LinearLayout>
@@ -91,14 +93,16 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Pending Expenses" />
+            android:text="View Expenses"
+            android:textColor="@color/white"
+            android:theme="@style/MACButtonThemeAlternative" />
 
         <Button
             android:id="@+id/btnPayStubFrag_submitExpense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="New Expense?"
+            android:text="Submit An Expense"
             android:textColor="@color/white"
             android:theme="@style/MACButtonThemeAlternative" />
     </LinearLayout>
