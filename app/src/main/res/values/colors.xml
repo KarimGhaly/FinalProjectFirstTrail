@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#0032a0</color>
     <color name="colorPrimaryLight">#0050ff</color>
     <color name="colorAccent">#d12d00</color>
+    <color name="colorRecyclerViewListItems">#0050ff</color>
     <color name="colorAlertDialogButtons">#d12d00</color>
     <color name="colorFragmentButtons">#0050ff</color>
     <color name="white">#ffffff</color>
