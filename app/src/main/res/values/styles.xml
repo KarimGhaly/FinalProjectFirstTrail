@@ -12,4 +12,11 @@
 
     </style>
 
+
+    <style name="MACButtonTheme" parent="@style/Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/colorAlertDialogButtons</item>
+
+
+    </style>
+
 </resources>

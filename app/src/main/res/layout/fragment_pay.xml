@@ -57,7 +57,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Advances Report"/>
+            android:text="Reported Advances"/>
 
         <Button
             android:id="@+id/btnPayStubFrag_requestAdvance"
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
             android:layout_weight="1"
-            android:text="Request Advance"/>
+            android:text="Need Advance?"/>
     </LinearLayout>
 
     <LinearLayout
@@ -81,19 +81,24 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent">
 
+
+
+        <!--android:background="@drawable/background_button"-->
         <Button
             android:id="@+id/btnPayStubFrag_expenseReport"
             android:layout_width="0dp"
+
+
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Expense Report" />
+            android:text="Reported Expenses" />
 
         <Button
             android:id="@+id/btnPayStubFrag_submitExpense"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Report Expense" />
+            android:text="New Expense?" />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
