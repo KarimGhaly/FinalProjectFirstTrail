@@ -15,14 +15,19 @@ import android.view.MenuItem;
 
 import com.example.admin.finalprojectfirsttrail.FragmentClass.AccountFragClass;
 import com.example.admin.finalprojectfirsttrail.FragmentClass.BenfitiesFragClass;
+import com.example.admin.finalprojectfirsttrail.FragmentClass.InterviewFragClass;
 import com.example.admin.finalprojectfirsttrail.FragmentClass.PayStubFragClass;
+import com.example.admin.finalprojectfirsttrail.FragmentClass.TrainingFragClass;
 import com.example.admin.finalprojectfirsttrail.InfoClass.ConsultantInfoClass;
 import com.example.admin.finalprojectfirsttrail.InfoClass.ContactInfoClass;
+import com.example.admin.finalprojectfirsttrail.InfoClass.GradedAssignmentInfoClass;
 import com.example.admin.finalprojectfirsttrail.InfoClass.HousingInfoClass;
 import com.example.admin.finalprojectfirsttrail.InfoClass.InsuranceInfoClass;
+import com.example.admin.finalprojectfirsttrail.InfoClass.InterviewInfoClass;
 import com.example.admin.finalprojectfirsttrail.InfoClass.PTOInfoClass;
 import com.example.admin.finalprojectfirsttrail.InfoClass.PaySlipInfoClass;
 import com.example.admin.finalprojectfirsttrail.InfoClass.TeamBindingClass;
+import com.example.admin.finalprojectfirsttrail.InfoClass.TodayAssigmentInfoClass;
 import com.example.admin.finalprojectfirsttrail.TFragments.AccountFragment;
 import com.example.admin.finalprojectfirsttrail.TFragments.BenefitsFragment;
 import com.example.admin.finalprojectfirsttrail.TFragments.MarketingFragment;
@@ -61,6 +66,9 @@ public class MainActivity extends AppCompatActivity {
     AccountFragClass accountFragClass;
     PayStubFragClass payStubFragClass;
     BenfitiesFragClass benfitiesFragClass;
+    TrainingFragClass trainingFragClass;
+    InterviewFragClass interviewFragClass;
+    private float sum;
 
 
     @Override
@@ -155,10 +163,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case 4:
-                if(trainingFrag==null)
+                if(trainingFragClass==null)
                 {
                     Log.d(TAG, "openTab: First");
-                    CreateTrainingFragment();
+                    getTrainingData();
                 }
                 else {
                     Log.d(TAG, "openTab: Not First");
@@ -168,10 +176,10 @@ public class MainActivity extends AppCompatActivity {
                 }
                 break;
             case 5:
-                if(marketingFrag==null)
+                if(interviewFragClass==null)
                 {
                     Log.d(TAG, "openTab: First");
-                    CreateMarketFragment();
+                    getInterviewList();
                 }
                 else
                 {
@@ -183,6 +191,9 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
     }
+
+
+
 
     private void setAccountFlagInfo() {
         ref.child(uid).child("Training Phase").child("Account").addValueEventListener(new ValueEventListener() {
@@ -392,15 +403,80 @@ public class MainActivity extends AppCompatActivity {
                 .setCustomAnimations(R.anim.slide_in,R.anim.slide_out)
                 .replace(R.id.content, benefitsFrag, "frag").commit();
     }
+
+    private void getTrainingData() {
+        trainingFragClass = new TrainingFragClass();
+        ref.child(uid).child("Training Phase").child("Training").child("Assignments").orderByKey().limitToLast(1).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for(DataSnapshot D: dataSnapshot.getChildren())
+                {
+                    trainingFragClass.setTodayAssigmentInfoClass(D.getValue(TodayAssigmentInfoClass.class));
+                }
+                getTrainingGrades();
+                ref.child(uid).child("Training Phase").child("Training").child("Assignments").removeEventListener(this);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+    }
+
+    private void getTrainingGrades() {
+        sum = 0;
+        ref.child(uid).child("Training Phase").child("Training").child("Grades").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                trainingFragClass.clearList();
+                for(DataSnapshot D: dataSnapshot.getChildren())
+                {
+                    GradedAssignmentInfoClass grade = D.getValue(GradedAssignmentInfoClass.class);
+                    sum += grade.getGrade();
+                    trainingFragClass.addGradeList(grade);
+                }
+                trainingFragClass.setOverallGrade((sum/dataSnapshot.getChildrenCount()) * 100);
+                CreateTrainingFragment();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
+
     private void CreateTrainingFragment()
     {
-        trainingFrag = new TrainingFragment();
+        trainingFrag = new TrainingFragment(trainingFragClass);
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.slide_in,R.anim.slide_out)
                 .replace(R.id.content, trainingFrag, "frag").commit();
     }
+
+    private void getInterviewList() {
+        interviewFragClass = new InterviewFragClass();
+        ref.child(uid).child("Training Phase").child("Interviews").child("Upcoming Interviews").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                interviewFragClass.clearList();
+                for(DataSnapshot D: dataSnapshot.getChildren())
+                {
+                    interviewFragClass.addtoInterviewList(D.getValue(InterviewInfoClass.class));
+                }
+                CreateMarketFragment();
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
     private void CreateMarketFragment(){
-        marketingFrag = new MarketingFragment();
+        marketingFrag = new MarketingFragment(interviewFragClass);
         getSupportFragmentManager().beginTransaction()
                 .setCustomAnimations(R.anim.slide_in,R.anim.slide_out)
                 .replace(R.id.content, marketingFrag, "frag").commit();

@@ -2,85 +2,127 @@ package com.example.admin.finalprojectfirsttrail.InfoClass;
 
 import android.os.Parcelable;
 
+import java.util.Date;
+
 /**
  * Created by ios on 10/22/17.
  */
 
 public class InterviewInfoClass {
-    String string1;
-    String string2;
-    String string3;
-    String string4;
-    String string5;
-    String string6;
-    String string7;
-    String string8;
+    private String interviewTitle;
+    private Date interviewDateTime;
+    private String interviewName;
+    private String clientName;
+    private String vendorName;
+    private String projectCityState;
+    private String projectDuration;
+    private String availabilityDate;
+    private String clientWebsite;
+    private String pdfMoreDetailsLink;
+    private String mentor;
 
-    public InterviewInfoClass(){
-
+    public InterviewInfoClass() {
     }
 
-    public String getString1() {
-        return string1;
+    public InterviewInfoClass(String interviewTitle, Date interviewDateTime, String interviewName, String clientName, String vendorName, String projectCityState, String projectDuration, String availabilityDate, String clientWebsite, String pdfMoreDetailsLink, String mentor) {
+        this.interviewTitle = interviewTitle;
+        this.interviewDateTime = interviewDateTime;
+        this.interviewName = interviewName;
+        this.clientName = clientName;
+        this.vendorName = vendorName;
+        this.projectCityState = projectCityState;
+        this.projectDuration = projectDuration;
+        this.availabilityDate = availabilityDate;
+        this.clientWebsite = clientWebsite;
+        this.pdfMoreDetailsLink = pdfMoreDetailsLink;
+        this.mentor = mentor;
     }
 
-    public String getString2() {
-        return string2;
+    public String getInterviewTitle() {
+        return interviewTitle;
     }
 
-    public String getString3() {
-        return string3;
+    public void setInterviewTitle(String interviewTitle) {
+        this.interviewTitle = interviewTitle;
     }
 
-    public String getString4() {
-        return string4;
+    public Date getInterviewDateTime() {
+        return interviewDateTime;
     }
 
-    public String getString5() {
-        return string5;
+    public void setInterviewDateTime(Date interviewDateTime) {
+        this.interviewDateTime = interviewDateTime;
     }
 
-    public String getString6() {
-        return string6;
+    public String getInterviewName() {
+        return interviewName;
     }
 
-    public String getString7() {
-        return string7;
+    public void setInterviewName(String interviewName) {
+        this.interviewName = interviewName;
     }
 
-    public String getString8() {
-        return string8;
+    public String getClientName() {
+        return clientName;
     }
 
-    public void setString1(String string1) {
-        this.string1 = string1;
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
     }
 
-    public void setString2(String string2) {
-        this.string2 = string2;
+    public String getVendorName() {
+        return vendorName;
     }
 
-    public void setString3(String string3) {
-        this.string3 = string3;
+    public void setVendorName(String vendorName) {
+        this.vendorName = vendorName;
     }
 
-    public void setString4(String string4) {
-        this.string4 = string4;
+    public String getProjectCityState() {
+        return projectCityState;
     }
 
-    public void setString5(String string5) {
-        this.string5 = string5;
+    public void setProjectCityState(String projectCityState) {
+        this.projectCityState = projectCityState;
     }
 
-    public void setString6(String string6) {
-        this.string6 = string6;
+    public String getProjectDuration() {
+        return projectDuration;
     }
 
-    public void setString7(String string7) {
-        this.string7 = string7;
+    public void setProjectDuration(String projectDuration) {
+        this.projectDuration = projectDuration;
     }
 
-    public void setString8(String string8) {
-        this.string8 = string8;
+    public String getAvailabilityDate() {
+        return availabilityDate;
+    }
+
+    public void setAvailabilityDate(String availabilityDate) {
+        this.availabilityDate = availabilityDate;
+    }
+
+    public String getClientWebsite() {
+        return clientWebsite;
+    }
+
+    public void setClientWebsite(String clientWebsite) {
+        this.clientWebsite = clientWebsite;
+    }
+
+    public String getPdfMoreDetailsLink() {
+        return pdfMoreDetailsLink;
+    }
+
+    public void setPdfMoreDetailsLink(String pdfMoreDetailsLink) {
+        this.pdfMoreDetailsLink = pdfMoreDetailsLink;
+    }
+
+    public String getMentor() {
+        return mentor;
+    }
+
+    public void setMentor(String mentor) {
+        this.mentor = mentor;
     }
 }
