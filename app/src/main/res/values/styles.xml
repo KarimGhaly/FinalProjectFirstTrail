@@ -14,7 +14,19 @@
 
 
     <style name="MACButtonTheme" parent="@style/Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/colorAccent</item>
+
+
+    </style>
+
+    <style name="MACButtonThemeAccent" parent="@style/Widget.AppCompat.Button.Colored">
         <item name="colorButtonNormal">@color/colorAlertDialogButtons</item>
+
+
+    </style>
+
+    <style name="MACButtonThemeAlternative" parent="@style/Widget.AppCompat.Button.Colored">
+        <item name="colorButtonNormal">@color/colorFragmentButtons</item>
 
 
     </style>

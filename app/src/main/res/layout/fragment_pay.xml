@@ -57,11 +57,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Reported Advances"/>
+
+            android:text="Approved Advances"/>
 
         <Button
             android:id="@+id/btnPayStubFrag_requestAdvance"
             android:layout_width="0dp"
+            android:theme="@style/MACButtonThemeAlternative"
+android:textColor="@color/white"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center_horizontal"
             android:layout_weight="1"
@@ -87,15 +90,15 @@
         <Button
             android:id="@+id/btnPayStubFrag_expenseReport"
             android:layout_width="0dp"
-
-
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Reported Expenses" />
+            android:text="Pending Expenses" />
 
         <Button
             android:id="@+id/btnPayStubFrag_submitExpense"
             android:layout_width="0dp"
+            android:textColor="@color/white"
+            android:theme="@style/MACButtonThemeAlternative"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="New Expense?" />

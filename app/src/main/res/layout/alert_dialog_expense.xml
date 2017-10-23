@@ -36,20 +36,24 @@
         android:paddingTop="10dp">
 
         <Button
+            android:id="@+id/btnCancelAlertDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.35"
+
+            android:onClick="cancelAlertDialog"
+            android:text="Cancel" />
+        <Button
             android:id="@+id/btnSubmitExpense_submitExpense"
             android:layout_width="wrap_content"
+            android:theme="@style/MACButtonThemeAlternative"
+android:textColor="@color/white"
             android:layout_height="wrap_content"
             android:layout_weight="0.35"
             android:onClick="submitExpense"
             android:text="Submit" />
 
-        <Button
-            android:id="@+id/btnCancelAlertDialog"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.35"
-            android:onClick="cancelAlertDialog"
-            android:text="Cancel" />
+
 
     </LinearLayout>
 
