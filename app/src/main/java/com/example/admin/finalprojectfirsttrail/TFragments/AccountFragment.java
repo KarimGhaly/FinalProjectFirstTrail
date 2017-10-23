@@ -315,12 +315,7 @@ public class AccountFragment extends Fragment {
             tvTrainerPhone.setText(instructor.getPhone());
             tvTrainerEmail.setText(instructor.getEmail());
             tvTrainerSkype.setText(IskypeUser);
-            tvTrainerSkype.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    openSkype(IskypeUser);
-                }
-            });
+
         }
         if (trainningManager != null) {
             final String TskypeUser = trainningManager.getSkype();
@@ -328,12 +323,7 @@ public class AccountFragment extends Fragment {
             tvTrainingManagerEmail.setText(trainningManager.getEmail());
             tvTrainingManagerPhone.setText(trainningManager.getPhone());
             tvTrainingManagerSkype.setText(TskypeUser);
-            tvTrainingManagerSkype.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    openSkype(TskypeUser);
-                }
-            });
+
         }
         if (marketingManager != null) {
             final String MskypeUser = marketingManager.getSkype();
@@ -341,12 +331,7 @@ public class AccountFragment extends Fragment {
             tvMarketingManagerEmail.setText(marketingManager.getEmail());
             tvMarketingManagerPhone.setText(marketingManager.getPhone());
             tvMarketingManagerSkype.setText(MskypeUser);
-            tvMarketingManagerSkype.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    openSkype(MskypeUser);
-                }
-            });
+
         }
 
     }
@@ -362,47 +347,6 @@ public class AccountFragment extends Fragment {
             rvAccountTeamList.setItemAnimator(itemAnimator);
         }
     }
-
-    public void openSkype(String skypeUser) {
-
-        Context myContext = getContext();
-        String mySkypeUri = "Skype:" + skypeUser + "?chat";
-        if (!isSkypeClientInstalled(myContext)) {
-            goToMarket(myContext);
-            return;
-        }
-
-        Uri skypeUri = Uri.parse(mySkypeUri);
-        Intent myIntent = new Intent(Intent.ACTION_VIEW, skypeUri);
-        myIntent.setComponent(new ComponentName("com.skype.raider", "com.skype.raider.Main"));
-        myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-
-        myContext.startActivity(myIntent);
-
-        return;
-
-    }
-
-    public boolean isSkypeClientInstalled(Context myContext) {
-        PackageManager myPackageMgr = myContext.getPackageManager();
-        try {
-            myPackageMgr.getPackageInfo("com.skype.raider", PackageManager.GET_ACTIVITIES);
-        } catch (PackageManager.NameNotFoundException e) {
-            return (false);
-        }
-        return (true);
-    }
-
-
-    public void goToMarket(Context myContext) {
-        Uri marketUri = Uri.parse("market://details?id=com.skype.raider");
-        Intent myIntent = new Intent(Intent.ACTION_VIEW, marketUri);
-        myIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        myContext.startActivity(myIntent);
-
-        return;
-    }
-
 
     private void openAccount() {
         TranslateAnimation anim = null;

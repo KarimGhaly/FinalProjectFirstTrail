@@ -406,13 +406,16 @@ public class MainActivity extends AppCompatActivity {
 
     private void getTrainingData() {
         trainingFragClass = new TrainingFragClass();
-        ref.child(uid).child("Training Phase").child("Training").child("Assignments").orderByKey().limitToLast(1).addValueEventListener(new ValueEventListener() {
+        ref.child(uid).child("Training Phase").child("Training").child("Assignments").orderByKey().addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
+                List<TodayAssigmentInfoClass> assignemtList = new ArrayList<TodayAssigmentInfoClass>();
                 for(DataSnapshot D: dataSnapshot.getChildren())
                 {
-                    trainingFragClass.setTodayAssigmentInfoClass(D.getValue(TodayAssigmentInfoClass.class));
+                    assignemtList.add(D.getValue(TodayAssigmentInfoClass.class));
                 }
+                Collections.reverse(assignemtList);
+                trainingFragClass.setTodayAssigmentsList(assignemtList);
                 getTrainingGrades();
                 ref.child(uid).child("Training Phase").child("Training").child("Assignments").removeEventListener(this);
             }

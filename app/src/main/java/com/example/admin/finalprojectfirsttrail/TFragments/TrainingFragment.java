@@ -6,24 +6,23 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.admin.finalprojectfirsttrail.FragmentClass.TrainingFragClass;
 import com.example.admin.finalprojectfirsttrail.InfoClass.GradedAssignmentInfoClass;
 import com.example.admin.finalprojectfirsttrail.InfoClass.TodayAssigmentInfoClass;
 import com.example.admin.finalprojectfirsttrail.R;
+import com.example.admin.finalprojectfirsttrail.RecyclerViewApadpters.TodayAssignmentViewPagerAdapter;
 import com.example.admin.finalprojectfirsttrail.RecyclerViewApadpters.TrainingRecyclerAdapter;
 import com.github.lzyzsd.circleprogress.ArcProgress;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import butterknife.BindView;
@@ -34,7 +33,7 @@ import butterknife.Unbinder;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class TrainingFragment extends Fragment {
+public class TrainingFragment extends Fragment implements TodayAssignmentViewPagerAdapter.getPosition{
 
     public static final String TAG = "TrainginFragmentTAG";
     TrainingFragClass trainingFragClass;
@@ -42,16 +41,12 @@ public class TrainingFragment extends Fragment {
     ArcProgress arcProgress;
     @BindView(R.id.btnTraining_githubRepo)
     Button btnTrainingGithubRepo;
-    @BindView(R.id.tvTraining_currentAssignmentTitle)
-    TextView tvTrainingCurrentAssignmentTitle;
-    @BindView(R.id.tvTraining_currentAssignmentDueDate)
-    TextView tvTrainingCurrentAssignmentDueDate;
-    @BindView(R.id.tvTraining_currentAssignmentDescription)
-    TextView tvTrainingCurrentAssignmentDescription;
     @BindView(R.id.rvTraining_Assignments)
     RecyclerView rvTrainingAssignments;
     Unbinder unbinder;
-
+    @BindView(R.id.vpTodayAssignment)
+    ViewPager vpTodayAssignment;
+    int Position;
 
     public TrainingFragment() {
         // Required empty public constructor
@@ -66,33 +61,28 @@ public class TrainingFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_training, container, false);
         unbinder = ButterKnife.bind(this, view);
-        setupUI(trainingFragClass.getTodayAssigmentInfoClass());
+        setupUI(trainingFragClass.getTodayAssigmentsList());
         setupRecyclerView(trainingFragClass.getGradeAssignmentList());
         return view;
     }
-    public void setupUI(TodayAssigmentInfoClass assignment){
-        if(assignment != null) {
-            arcProgress.setProgress(Math.round(trainingFragClass.getOverallGrade()));
-            if (arcProgress.getProgress() > 85) {
-                arcProgress.setTextColor(Color.GREEN);
-                arcProgress.setFinishedStrokeColor(Color.GREEN);
-            } else if (arcProgress.getProgress() > 60) {
-                arcProgress.setTextColor(Color.YELLOW);
-                arcProgress.setFinishedStrokeColor(Color.YELLOW);
-            } else {
-                arcProgress.setTextColor(Color.RED);
-                arcProgress.setFinishedStrokeColor(Color.RED);
-            }
-            SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-            tvTrainingCurrentAssignmentTitle.setText(assignment.getTitle());
-            tvTrainingCurrentAssignmentDueDate.setText(sdf.format(assignment.getDueDate()));
-            tvTrainingCurrentAssignmentDescription.setText(assignment.getDescription());
+
+    public void setupUI(List<TodayAssigmentInfoClass> assignments) {
+        arcProgress.setProgress(Math.round(trainingFragClass.getOverallGrade()));
+        if (arcProgress.getProgress() > 85) {
+            arcProgress.setTextColor(Color.GREEN);
+            arcProgress.setFinishedStrokeColor(Color.GREEN);
+        } else if (arcProgress.getProgress() > 60) {
+            arcProgress.setTextColor(Color.YELLOW);
+            arcProgress.setFinishedStrokeColor(Color.YELLOW);
+        } else {
+            arcProgress.setTextColor(Color.RED);
+            arcProgress.setFinishedStrokeColor(Color.RED);
         }
+        vpTodayAssignment.setAdapter(new TodayAssignmentViewPagerAdapter(getContext(),assignments,this));
 
     }
 
-    public void setupRecyclerView(List<GradedAssignmentInfoClass> gradesList)
-    {
+    public void setupRecyclerView(List<GradedAssignmentInfoClass> gradesList) {
         TrainingRecyclerAdapter trainingRecyclerAdapter = new TrainingRecyclerAdapter(gradesList);
         rvTrainingAssignments.setAdapter(trainingRecyclerAdapter);
         rvTrainingAssignments.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -107,7 +97,12 @@ public class TrainingFragment extends Fragment {
 
     @OnClick(R.id.btnTraining_githubRepo)
     public void onViewClicked() {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(trainingFragClass.getTodayAssigmentInfoClass().getSylbusLink()));
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(trainingFragClass.getTodayAssigmentsList().get(Position).getSylbusLink()));
         startActivity(browserIntent);
+    }
+
+    @Override
+    public void getPosition(int position) {
+        Position = position;
     }
 }

@@ -12,15 +12,16 @@ import java.util.List;
 
 public class TrainingFragClass {
     float overallGrade;
-    TodayAssigmentInfoClass todayAssigmentInfoClass;
+   List<TodayAssigmentInfoClass> todayAssigmentsList = new ArrayList<>();
     List<GradedAssignmentInfoClass> gradeAssignmentList = new ArrayList<>();
 
     public TrainingFragClass() {
     }
 
-    public TrainingFragClass(float overallGrade, TodayAssigmentInfoClass todayAssigmentInfoClass) {
+    public TrainingFragClass(float overallGrade, List<TodayAssigmentInfoClass> todayAssigmentsList, List<GradedAssignmentInfoClass> gradeAssignmentList) {
         this.overallGrade = overallGrade;
-        this.todayAssigmentInfoClass = todayAssigmentInfoClass;
+        this.todayAssigmentsList = todayAssigmentsList;
+        this.gradeAssignmentList = gradeAssignmentList;
     }
 
     public float getOverallGrade() {
@@ -31,12 +32,12 @@ public class TrainingFragClass {
         this.overallGrade = overallGrade;
     }
 
-    public TodayAssigmentInfoClass getTodayAssigmentInfoClass() {
-        return todayAssigmentInfoClass;
+    public List<TodayAssigmentInfoClass> getTodayAssigmentsList() {
+        return todayAssigmentsList;
     }
 
-    public void setTodayAssigmentInfoClass(TodayAssigmentInfoClass todayAssigmentInfoClass) {
-        this.todayAssigmentInfoClass = todayAssigmentInfoClass;
+    public void setTodayAssigmentsList(List<TodayAssigmentInfoClass> todayAssigmentsList) {
+        this.todayAssigmentsList = todayAssigmentsList;
     }
 
     public List<GradedAssignmentInfoClass> getGradeAssignmentList() {
@@ -45,6 +46,15 @@ public class TrainingFragClass {
 
     public void setGradeAssignmentList(List<GradedAssignmentInfoClass> gradeAssignmentList) {
         this.gradeAssignmentList = gradeAssignmentList;
+    }
+
+    public void addAssigntmetList(TodayAssigmentInfoClass todayAssigmentInfoClass)
+    {
+        todayAssigmentsList.add(todayAssigmentInfoClass);
+    }
+
+    public void clearAssignmetList(){
+        todayAssigmentsList.clear();
     }
     public void addGradeList(GradedAssignmentInfoClass grade)
     {
