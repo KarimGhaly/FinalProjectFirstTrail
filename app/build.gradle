@@ -39,6 +39,7 @@ dependencies {
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     compile 'net.cachapa.expandablelayout:expandablelayout:2.+'
+    compile 'com.github.lzyzsd:circleprogress:1.2.1'
 
 }
 
