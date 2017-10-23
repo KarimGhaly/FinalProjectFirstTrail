@@ -39,15 +39,6 @@
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingTop="10dp">
-
-        <Button
-            android:id="@+id/btnAddAdvance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.35"
-            android:onClick="submitRequestPto"
-            android:text="Submit" />
-
         <Button
             android:id="@+id/btnCancelAlertDialog"
             android:layout_width="wrap_content"
@@ -55,6 +46,17 @@
             android:layout_weight="0.35"
             android:onClick="cancelAlertDialog"
             android:text="Cancel" />
+        <Button
+            android:id="@+id/btnAddAdvance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.35"
+            android:textColor="@color/white"
+            android:theme="@style/MACButtonThemeAlternative"
+            android:onClick="submitRequestPto"
+            android:text="Submit" />
+
+
 
     </LinearLayout>
 

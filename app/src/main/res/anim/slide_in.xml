@@ -4,11 +4,11 @@
     <alpha
         android:valueFrom="0"
         android:valueTo="1.0"
-        android:duration="1100" />
+        android:duration="700" />
     <translate
         android:fromYDelta="100%"
         android:toYDelta="0"
-        android:duration="1100"
+        android:duration="700"
         />
 
 
