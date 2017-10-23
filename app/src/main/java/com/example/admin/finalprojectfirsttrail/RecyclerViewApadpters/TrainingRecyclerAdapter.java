@@ -40,11 +40,6 @@ public class TrainingRecyclerAdapter extends RecyclerView.Adapter<TrainingRecycl
     @Override
     public void onBindViewHolder(final TrainingRecyclerAdapter.ViewHolder holder, int position) {
 
-        if(position == 0)
-        {
-            holder.clTraining_AssignmentCard.setBackgroundColor(ContextCompat.getColor(context,R.color.colorAlertDialogButtons));
-        }
-
         holder.clTraining_AssignmentCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

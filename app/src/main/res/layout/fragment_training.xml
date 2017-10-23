@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
 
-    android:background="@color/cardview_dark_background"
+    android:background="@color/colorCardBack"
     android:layout_height="match_parent">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -48,6 +48,7 @@
                     android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
+                    android:theme="@style/MACButtonThemeAlternative"
                     android:textColor="@color/white"
                     android:text="Syllabus"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -77,12 +78,13 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:orientation="vertical"
+              android:layout_margin="10dp"
               >
           <android.support.constraint.ConstraintLayout
 
             android:layout_width="match_parent"
-            android:background="@color/colorAlertDialogButtons"
-            android:layout_height="wrap_content">
+              android:background="@color/colorFragmentButtons"
+              android:layout_height="wrap_content">
 
 
             <TextView
