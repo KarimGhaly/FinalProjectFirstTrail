@@ -34,7 +34,12 @@
         android:hint="Description"
         android:inputType="textMultiLine"
         android:lines="3" />
-
+    <Button
+        android:id="@+id/btnDeleteUpdatePto"
+        android:textColor="@color/colorAlertDialogButtons"
+        android:text="Delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,25 +49,23 @@
         android:paddingTop="10dp">
 
         <Button
-            android:id="@+id/btnSubmitUpdatePto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.35"
-            android:text="Update" />
-
-        <Button
             android:id="@+id/btnUpdateCancelAlertDialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.35"
             android:text="Cancel" />
 
+        <Button
+            android:id="@+id/btnSubmitUpdatePto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.35"
+            android:text="Update"
+            android:textColor="@color/white"
+            android:theme="@style/MACButtonThemeAlternative"
+            />
+
+
     </LinearLayout>
-    <Button
-        android:id="@+id/btnDeleteUpdatePto"
-        android:textColor="@color/colorAlertDialogButtons"
-        android:text="Delete"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
 
 </LinearLayout>
