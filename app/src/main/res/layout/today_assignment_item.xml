@@ -74,13 +74,14 @@
 
             </android.support.constraint.ConstraintLayout>
 
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            <android.support.v4.widget.NestedScrollView
+                android:layout_height="match_parent"
+                android:layout_width="match_parent">
 
                 <android.support.constraint.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
+
 
                     <TextView
                         android:id="@+id/tvTraining_currentAssignmentDescription"
@@ -96,7 +97,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                 </android.support.constraint.ConstraintLayout>
-            </ScrollView>
+            </android.support.v4.widget.NestedScrollView>
         </LinearLayout>
     </android.support.v7.widget.CardView>
 
