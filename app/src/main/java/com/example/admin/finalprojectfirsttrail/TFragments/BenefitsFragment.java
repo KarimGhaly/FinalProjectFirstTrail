@@ -128,12 +128,14 @@ public class BenefitsFragment extends Fragment implements RequestPTORecyclerAdap
 
     public void setupIsuranceUI(List<InsuranceInfoClass> insurnceList)
     {
-        Collections.sort(insurnceList, new Comparator<InsuranceInfoClass>() {
-            @Override
-            public int compare(InsuranceInfoClass o1, InsuranceInfoClass o2) {
-                return o1.getOrder() - o2.getOrder();
-            }
-        });
+        if(insurnceList.size()>1) {
+            Collections.sort(insurnceList, new Comparator<InsuranceInfoClass>() {
+                @Override
+                public int compare(InsuranceInfoClass o1, InsuranceInfoClass o2) {
+                    return o1.getOrder() - o2.getOrder();
+                }
+            });
+        }
         InsuranceRecyclerView insuranceAdapter = new InsuranceRecyclerView(insurnceList);
         RVInsuranceBenefits.setAdapter(insuranceAdapter);
         RVInsuranceBenefits.setLayoutManager(new LinearLayoutManager(getContext()));
