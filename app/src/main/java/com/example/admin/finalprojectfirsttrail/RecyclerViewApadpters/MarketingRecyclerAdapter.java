@@ -48,7 +48,7 @@ public class MarketingRecyclerAdapter extends RecyclerView.Adapter<MarketingRecy
         final InterviewInfoClass interview = interviewList.get(position);
         holder.tvInterviewsInterviewTitle.setText(interview.getInterviewTitle());
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy HH:mm");
-        holder.tvInterviewsAvailabilityDate.setText(sdf.format(interview.getInterviewDateTime()));
+        holder.tvInterviewsInterviewDate.setText(sdf.format(interview.getInterviewDateTime()));
         holder.tvInterviewsInterviewerNames.setText(interview.getInterviewName());
         holder.tvInterviewsMentorName.setText(interview.getMentor());
         holder.tvInterviewsClient.setText(interview.getClientName());
@@ -83,8 +83,7 @@ public class MarketingRecyclerAdapter extends RecyclerView.Adapter<MarketingRecy
         TextView tvInterviewsInterviewTitle;
         @BindView(R.id.tvInterviews_interviewDate)
         TextView tvInterviewsInterviewDate;
-        @BindView(R.id.tvInterviews_interviewTime)
-        TextView tvInterviewsInterviewTime;
+
         @BindView(R.id.clMarketing_InterviewTitle)
         ConstraintLayout clMarketingInterviewTitle;
 
