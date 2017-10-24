@@ -4,7 +4,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <dimen name="payStub_columnTitleTextSize">20sp</dimen>
-    <dimen name="payStub_displayTextSize">18sp</dimen>
+    <dimen name="displayTextSize">18sp</dimen>
     <dimen name="payStub_rowTitleTextSize">18sp</dimen>
     <dimen name="payStub_displayTextPadding">5dp</dimen>
     <dimen name="payStub_rowTextViewHeight">40dp</dimen>

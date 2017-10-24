@@ -14,17 +14,17 @@
         android:id="@+id/tvRequestPto_dateFrom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Date From: MM/DD/YYYY"
         android:clickable="true"
+        android:hint="Date From: MM/DD/YYYY"
         android:inputType="none" />
 
     <EditText
         android:id="@+id/tvRequestPto_dateTo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clickable="true"
         android:hint="Date To: MM/DD/YYYY"
-        android:inputType="none"
-        android:clickable="true"/>
+        android:inputType="none" />
 
 
     <EditText
@@ -44,18 +44,20 @@
         android:paddingTop="10dp">
 
         <Button
-            android:id="@+id/btnSubmitRequestPto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.35"
-            android:text="Submit" />
-
-        <Button
             android:id="@+id/btnCancelAlertDialog"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.35"
             android:text="Cancel" />
+
+        <Button
+            android:id="@+id/btnSubmitRequestPto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.35"
+            android:text="Submit"
+            android:textColor="@color/white"
+            android:theme="@style/MACButtonThemeAlternative" />
 
     </LinearLayout>
 

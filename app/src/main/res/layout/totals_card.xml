@@ -44,7 +44,7 @@
                 android:background="@drawable/display_rectangle"
                 android:gravity="center"
                 android:text="$425.00"
-                android:textSize="@dimen/payStub_displayTextSize"
+                android:textSize="@dimen/displayTextSize"
                 app:layout_constraintLeft_toLeftOf="@+id/guidelineS"
                 app:layout_constraintRight_toLeftOf="@+id/guidelineS"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -75,7 +75,7 @@
                 android:background="@drawable/display_rectangle"
                 android:gravity="center"
                 android:text="$4,000.00"
-                android:textSize="@dimen/payStub_displayTextSize"
+                android:textSize="@dimen/displayTextSize"
                 app:layout_constraintLeft_toLeftOf="@+id/guidelineS"
                 app:layout_constraintRight_toLeftOf="@+id/guidelineS"
                 app:layout_constraintTop_toBottomOf="@+id/tvTotals_netPay" />
@@ -108,7 +108,7 @@
                 android:background="@drawable/display_rectangle"
                 android:gravity="center"
                 android:text="$4,000.00"
-                android:textSize="@dimen/payStub_displayTextSize"
+                android:textSize="@dimen/displayTextSize"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="@+id/guidelineS"
                 app:layout_constraintRight_toLeftOf="@+id/guidelineS"

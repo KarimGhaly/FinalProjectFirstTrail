@@ -104,7 +104,7 @@
                     android:minWidth="@dimen/display_rectangle_minWidth"
                     android:padding="@dimen/payStub_displayTextPadding"
                     android:text="47.25"
-                    android:textSize="@dimen/payStub_displayTextSize"
+                    android:textSize="@dimen/displayTextSize"
                     app:layout_constraintLeft_toLeftOf="@+id/guidelineB"
                     app:layout_constraintRight_toLeftOf="@+id/guidelineB"
                     app:layout_constraintTop_toBottomOf="@+id/textView27" />
@@ -121,7 +121,7 @@
                     android:minWidth="@dimen/display_rectangle_minWidth"
                     android:padding="@dimen/payStub_displayTextPadding"
                     android:text="102"
-                    android:textSize="@dimen/payStub_displayTextSize"
+                    android:textSize="@dimen/displayTextSize"
                     app:layout_constraintLeft_toLeftOf="@+id/guidelineS"
                     app:layout_constraintRight_toLeftOf="@+id/guidelineS"
                     app:layout_constraintTop_toBottomOf="@+id/textView8" />
@@ -138,7 +138,7 @@
                     android:minWidth="@dimen/display_rectangle_minWidth"
                     android:padding="@dimen/payStub_displayTextPadding"
                     android:text="1522.00"
-                    android:textSize="@dimen/payStub_displayTextSize"
+                    android:textSize="@dimen/displayTextSize"
                     app:layout_constraintLeft_toLeftOf="@+id/guidelineE"
                     app:layout_constraintRight_toLeftOf="@+id/guidelineE"
                     app:layout_constraintTop_toBottomOf="@+id/textView13" />
@@ -168,7 +168,7 @@
                     android:minWidth="@dimen/display_rectangle_minWidth"
                     android:padding="@dimen/payStub_displayTextPadding"
                     android:text="7.25"
-                    android:textSize="@dimen/payStub_displayTextSize"
+                    android:textSize="@dimen/displayTextSize"
                     app:layout_constraintLeft_toLeftOf="@+id/guidelineB"
                     app:layout_constraintRight_toLeftOf="@+id/guidelineB"
                     app:layout_constraintTop_toBottomOf="@+id/tvEarning_regularRate" />
@@ -185,7 +185,7 @@
                     android:minWidth="@dimen/display_rectangle_minWidth"
                     android:padding="@dimen/payStub_displayTextPadding"
                     android:text="72"
-                    android:textSize="@dimen/payStub_displayTextSize"
+                    android:textSize="@dimen/displayTextSize"
                     app:layout_constraintLeft_toLeftOf="@+id/guidelineS"
                     app:layout_constraintRight_toLeftOf="@+id/guidelineS"
                     app:layout_constraintTop_toBottomOf="@+id/tvEarning_regularHours" />
@@ -202,7 +202,7 @@
                     android:minWidth="@dimen/display_rectangle_minWidth"
                     android:padding="@dimen/payStub_displayTextPadding"
                     android:text="522.00"
-                    android:textSize="@dimen/payStub_displayTextSize"
+                    android:textSize="@dimen/displayTextSize"
                     app:layout_constraintLeft_toLeftOf="@+id/guidelineE"
                     app:layout_constraintRight_toLeftOf="@+id/guidelineE"
                     app:layout_constraintTop_toBottomOf="@+id/tvEarning_regularPay" />
@@ -233,7 +233,7 @@
                     android:minWidth="@dimen/display_rectangle_minWidth"
                     android:padding="@dimen/payStub_displayTextPadding"
                     android:text="8"
-                    android:textSize="@dimen/payStub_displayTextSize"
+                    android:textSize="@dimen/displayTextSize"
                     app:layout_constraintLeft_toLeftOf="@+id/guidelineS"
                     app:layout_constraintRight_toLeftOf="@+id/guidelineS"
                     app:layout_constraintTop_toBottomOf="@+id/tvEarning_overtimeHours" />
@@ -250,7 +250,7 @@
                     android:minWidth="@dimen/display_rectangle_minWidth"
                     android:padding="@dimen/payStub_displayTextPadding"
                     android:text="$50"
-                    android:textSize="@dimen/payStub_displayTextSize"
+                    android:textSize="@dimen/displayTextSize"
                     app:layout_constraintLeft_toLeftOf="@+id/guidelineE"
                     app:layout_constraintRight_toLeftOf="@+id/guidelineE"
                     app:layout_constraintTop_toBottomOf="@+id/tvEarning_overTimePay" />
@@ -280,7 +280,7 @@
                     android:minWidth="@dimen/display_rectangle_minWidth"
                     android:padding="@dimen/payStub_displayTextPadding"
                     android:text="24"
-                    android:textSize="@dimen/payStub_displayTextSize"
+                    android:textSize="@dimen/displayTextSize"
                     app:layout_constraintLeft_toLeftOf="@+id/guidelineS"
                     app:layout_constraintRight_toLeftOf="@+id/guidelineS"
                     app:layout_constraintTop_toBottomOf="@+id/tvEarning_holidayHours" />
@@ -297,7 +297,7 @@
                     android:minWidth="@dimen/display_rectangle_minWidth"
                     android:padding="@dimen/payStub_displayTextPadding"
                     android:text="174.00"
-                    android:textSize="@dimen/payStub_displayTextSize"
+                    android:textSize="@dimen/displayTextSize"
                     app:layout_constraintLeft_toLeftOf="@+id/guidelineE"
                     app:layout_constraintRight_toLeftOf="@+id/guidelineE"
                     app:layout_constraintTop_toBottomOf="@+id/tvEarning_holidayPay" />
@@ -327,7 +327,7 @@
                     android:minWidth="@dimen/display_rectangle_minWidth"
                     android:padding="@dimen/payStub_displayTextPadding"
                     android:text="174.00"
-                    android:textSize="@dimen/payStub_displayTextSize"
+                    android:textSize="@dimen/displayTextSize"
                     app:layout_constraintLeft_toLeftOf="@+id/guidelineE"
                     app:layout_constraintRight_toLeftOf="@+id/guidelineE"
                     app:layout_constraintTop_toBottomOf="@+id/tvExpAdv_expenses" />
@@ -357,7 +357,7 @@
                     android:minWidth="@dimen/display_rectangle_minWidth"
                     android:padding="@dimen/payStub_displayTextPadding"
                     android:text="174.00"
-                    android:textSize="@dimen/payStub_displayTextSize"
+                    android:textSize="@dimen/displayTextSize"
                     app:layout_constraintLeft_toLeftOf="@+id/guidelineE"
                     app:layout_constraintRight_toLeftOf="@+id/guidelineE"
                     app:layout_constraintTop_toBottomOf="@+id/tvEarning_ptoPay" />
@@ -391,7 +391,7 @@
                     android:minWidth="@dimen/display_rectangle_minWidth"
                     android:padding="@dimen/payStub_displayTextPadding"
                     android:text="200"
-                    android:textSize="@dimen/payStub_displayTextSize"
+                    android:textSize="@dimen/displayTextSize"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="@+id/guidelineS"
                     app:layout_constraintRight_toLeftOf="@+id/guidelineS"
@@ -410,7 +410,7 @@
                     android:minWidth="@dimen/display_rectangle_minWidth"
                     android:padding="@dimen/payStub_displayTextPadding"
                     android:text="4,000.00"
-                    android:textSize="@dimen/payStub_displayTextSize"
+                    android:textSize="@dimen/displayTextSize"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintLeft_toLeftOf="@+id/guidelineE"
                     app:layout_constraintRight_toLeftOf="@+id/guidelineE"
