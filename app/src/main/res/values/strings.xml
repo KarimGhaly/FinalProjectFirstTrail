@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MAC Consultant Dashboard</string>
+    <string name="app_name">DashMAC</string>
 
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>

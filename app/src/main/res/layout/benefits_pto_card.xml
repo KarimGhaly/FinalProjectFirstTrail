@@ -152,6 +152,8 @@
                         android:layout_weight="1"
                         android:textSize="16dp"
                         android:minHeight="50dp"
+                        android:textColor="@color/white"
+                        android:theme="@style/MACButtonThemeAlternative"
                         android:text="PTO Requested" />
 
                     <Button
@@ -161,6 +163,8 @@
                         android:layout_weight="1"
                         android:minHeight="50dp"
                         android:textSize="16dp"
+                        android:textColor="@color/white"
+                        android:theme="@style/MACButtonThemeAlternative"
                         android:text="Request PTO" />
 
                 </LinearLayout>
