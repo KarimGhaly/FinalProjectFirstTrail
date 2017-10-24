@@ -11,6 +11,8 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.example.admin.finalprojectfirsttrail.FragmentClass.AccountFragClass;
@@ -69,13 +71,14 @@ public class MainActivity extends AppCompatActivity {
     TrainingFragClass trainingFragClass;
     InterviewFragClass interviewFragClass;
     private float sum;
+    private FirebaseAuth auth;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FirebaseAuth auth = FirebaseAuth.getInstance();
+        auth = FirebaseAuth.getInstance();
         FirebaseUser user = auth.getCurrentUser();
         database = FirebaseDatabase.getInstance();
         ref = database.getReference("Consultants_Records");
@@ -514,4 +517,30 @@ public class MainActivity extends AppCompatActivity {
         super.onBackPressed();
         finishAffinity();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.menu_main,menu);
+        return true;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.action_sign_out:
+                auth.signOut();
+                Intent intent = new Intent(this,LoginActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.action_exit:
+                auth.signOut();
+                finishAffinity();
+                break;
+        }
+        return true;
+    }
+
 }
