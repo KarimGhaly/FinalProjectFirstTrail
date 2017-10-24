@@ -53,8 +53,9 @@ public class InsuranceRecyclerView extends RecyclerView.Adapter<InsuranceRecycle
         TextView tvBenefitsBenefitTitle;
         @BindView(R.id.tvBenefits_benefitCarrier)
         TextView tvBenefitsBenefitCarrier;
-        @BindView(R.id.tvBenefits_benfitPlantxt)
+        @BindView(R.id.tvBenefits_benefitPlan)
         TextView tvBenefitsBenfitPlantxt;
+
         ViewHolder(View view) {
             super(view);
             ButterKnife.bind(this, view);
